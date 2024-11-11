@@ -1,0 +1,32 @@
+.containerStyle {
+    top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    height: calc(100vh - 70px);
+    position: relative;
+    overflow: hidden;
+}
+
+.headerStyle {
+    padding-bottom: 80px;
+    padding-top: 0px;
+    font-Size: 33px;
+    font-family: "Avenir Next", "Avenir", sans-serif;
+    color: white;
+}
+
+.errorStyle {
+    color: red;
+}
+
+.image-overlay {
+    position: absolute;
+    left: 600px;
+    top: 20px; /* Adjust the value to move the image lower */
+    z-index: 2; /* Ensure the image appears above the text */
+    width: 21%; /* Adjust width as needed */
+    height: 40%; /* Adjust height as needed */
+    pointer-events: none; /* Ensures that the image doesn't interfere with clicking on the text */
+}
