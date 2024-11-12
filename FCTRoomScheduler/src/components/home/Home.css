@@ -30,3 +30,35 @@
     height: 40%; /* Adjust height as needed */
     pointer-events: none; /* Ensures that the image doesn't interfere with clicking on the text */
 }
+
+.buildings-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.building-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+}
+
+.building-card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.building-card h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.building-card p {
+    margin: 5px 0;
+    color: #555;
+}

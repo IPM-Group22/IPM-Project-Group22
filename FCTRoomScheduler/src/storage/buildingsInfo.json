@@ -1,0 +1,148 @@
+{
+  "ii" : {
+      "image" : "building_ii.png",
+      "numberOfFloors" : 2,
+      "floors" : [
+        {
+          "floor" : 1,
+          "floorImage" : "building_ii_floor_1.png",
+          "rooms" : [
+            {
+              "name" : "127",
+              "size" : "75",
+              "type": [
+                "classroom",
+                "auditorium"
+              ],
+              "materials" : [
+                {
+                  "name" : "Chairs",
+                  "number" : 75,
+                  "description" : "This room has chairs"
+                },
+                {
+                  "name" : "Tables",
+                  "number" : 7,
+                  "description" : "This room has tables"
+                },
+                {
+                  "name" : "Projector",
+                  "number" : 1,
+                  "description" : "This room has a projector"
+                }
+              ],
+              "qualities" : [
+                "Air conditioning",
+                "Natural light"
+              ]
+            },
+            {
+              "name" : "128",
+              "size" : "100",
+              "type": [
+                "classroom",
+                "auditorium"
+              ],
+              "materials" : [
+                {
+                  "name" : "Chairs",
+                  "number" : 75,
+                  "description" : "This room has chairs"
+                },
+                {
+                  "name" : "Tables",
+                  "number" : 7,
+                  "description" : "This room has tables"
+                },
+                {
+                  "name" : "Projector",
+                  "number" : 1,
+                  "description" : "This room has a projector"
+                }
+              ],
+              "qualities" : [
+                "Air conditioning",
+                "Natural light"
+              ]
+            }
+          ]
+        },
+        {
+            "floor" : 2,
+            "floorImage" : "building_ii_floor_2.png",
+            "rooms" : [
+                {
+                "name" : "227",
+                "size" : "75",
+                "type": [
+                    "classroom",
+                    "auditorium"
+                ],
+                "materials" : [
+                    {
+                    "name" : "Chairs",
+                    "number" : 75,
+                    "description" : "This room has chairs"
+                    },
+                    {
+                    "name" : "Tables",
+                    "number" : 7,
+                    "description" : "This room has tables"
+                    },
+                    {
+                    "name" : "Projector",
+                    "number" : 1,
+                    "description" : "This room has a projector"
+                    }
+                ],
+                "qualities" : [
+                    "Air conditioning",
+                    "Natural light"
+                ]
+                }
+            ]
+        }
+      ]
+  },
+  "vii" : {
+      "image" : "building_vii.png",
+      "numberOfFloors" : 3,
+      "floors": [
+        {
+          "floor" : 0,
+          "floorImage" : "building_vii_floor_0.png",
+          "rooms" : [
+            {
+              "name" : "1C",
+              "size" : "120",
+              "type": [
+                "classroom",
+                "auditorium"
+              ],
+              "materials" : [
+                {
+                  "name" : "Chairs",
+                  "number" : 120,
+                  "description" : "This room has chairs"
+                },
+                {
+                  "name" : "Tables",
+                  "number" : 30,
+                  "description" : "This room has tables"
+                },
+                {
+                  "name" : "Projector",
+                  "number" : 1,
+                  "description" : "This room has a projector"
+                }
+              ],
+              "qualities" : [
+                "Air conditioning"
+              ]
+            }
+          ]
+        }
+      ]
+  }
+
+}
