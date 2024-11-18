@@ -10,6 +10,8 @@
             {
               "name" : "127",
               "size" : "75",
+              "description" : "This room has chairs",
+              "photo": "https://www.teachhub.com/wp-content/uploads/2020/05/Classroom-Management-for-an-Effective-Learning-Environment-1024x683.jpg",
               "type": [
                 "classroom",
                 "auditorium"
@@ -64,6 +66,300 @@
                 "Air conditioning",
                 "Natural light"
               ]
+            },
+            {
+              "name": "114",
+              "size": "80",
+              "type": [
+                "classroom"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 80,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Whiteboard",
+                  "number": 1,
+                  "description": "This room has a whiteboard"
+                }
+              ],
+              "qualities": [
+                "Natural light"
+              ]
+            },
+            {
+              "name": "115",
+              "size": "90",
+              "type": [
+                "computer lab"
+              ],
+              "materials": [
+                {
+                  "name": "Computers",
+                  "number": 20,
+                  "description": "This room has computers"
+                },
+                {
+                  "name": "Chairs",
+                  "number": 20,
+                  "description": "This room has chairs"
+                }
+              ],
+              "qualities": [
+                "Air conditioning"
+              ]
+            },
+            {
+              "name": "116",
+              "size": "70",
+              "type": [
+                "seminar room"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 50,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Tables",
+                  "number": 10,
+                  "description": "This room has tables"
+                }
+              ],
+              "qualities": [
+                "Projector",
+                "Soundproof walls"
+              ]
+            },
+            {
+              "name": "117",
+              "size": "60",
+              "type": [
+                "meeting room"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 20,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Table",
+                  "number": 1,
+                  "description": "This room has a large table"
+                }
+              ],
+              "qualities": [
+                "Natural light"
+              ]
+            },
+            {
+              "name": "118",
+              "size": "85",
+              "type": [
+                "lecture hall"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 85,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Microphone",
+                  "number": 2,
+                  "description": "This room has microphones"
+                }
+              ],
+              "qualities": [
+                "Air conditioning",
+                "Audio system"
+              ]
+            },
+            {
+              "name": "119",
+              "size": "50",
+              "type": [
+                "classroom"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 50,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Whiteboard",
+                  "number": 1,
+                  "description": "This room has a whiteboard"
+                }
+              ],
+              "qualities": [
+                "Natural light"
+              ]
+            },
+            {
+              "name": "120",
+              "size": "65",
+              "type": [
+                "workshop room"
+              ],
+              "materials": [
+                {
+                  "name": "Workbenches",
+                  "number": 5,
+                  "description": "This room has workbenches"
+                },
+                {
+                  "name": "Tools",
+                  "number": 30,
+                  "description": "This room has tools"
+                }
+              ],
+              "qualities": [
+                "Ventilation system"
+              ]
+            },
+            {
+              "name": "121",
+              "size": "90",
+              "type": [
+                "classroom"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 90,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Tables",
+                  "number": 20,
+                  "description": "This room has tables"
+                }
+              ],
+              "qualities": [
+                "Air conditioning"
+              ]
+            },
+            {
+              "name": "122",
+              "size": "55",
+              "type": [
+                "seminar room"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 55,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Projector",
+                  "number": 1,
+                  "description": "This room has a projector"
+                }
+              ],
+              "qualities": [
+                "Soundproof walls"
+              ]
+            },
+            {
+              "name": "123",
+              "size": "100",
+              "type": [
+                "auditorium"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 100,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Stage",
+                  "number": 1,
+                  "description": "This room has a stage"
+                }
+              ],
+              "qualities": [
+                "Audio system",
+                "Lighting system"
+              ]
+            },
+            {
+              "name": "124",
+              "size": "110",
+              "type": [
+                "classroom"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 110,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Tables",
+                  "number": 20,
+                  "description": "This room has tables"
+                }
+              ],
+              "qualities": [
+                "Air conditioning"
+              ]
+            },
+            {
+              "name": "125",
+              "size": "95",
+              "type": [
+                "conference room"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 30,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Table",
+                  "number": 1,
+                  "description": "This room has a large table"
+                },
+                {
+                  "name": "Television",
+                  "number": 1,
+                  "description": "This room has a television for presentations"
+                }
+              ],
+              "qualities": [
+                "Video conferencing equipment"
+              ]
+            },
+            {
+              "name": "126",
+              "size": "75",
+              "type": [
+                "classroom"
+              ],
+              "materials": [
+                {
+                  "name": "Chairs",
+                  "number": 75,
+                  "description": "This room has chairs"
+                },
+                {
+                  "name": "Projector",
+                  "number": 1,
+                  "description": "This room has a projector"
+                }
+              ],
+              "qualities": [
+                "Air conditioning"
+              ]
             }
           ]
         },
@@ -99,6 +395,29 @@
                     "Air conditioning",
                     "Natural light"
                 ]
+                },
+                {
+                  "name": "220",
+                  "size": "85",
+                  "type": [
+                    "computer lab"
+                  ],
+                  "materials": [
+                    {
+                      "name": "Computers",
+                      "number": 30,
+                      "description": "This room has computers"
+                    },
+                    {
+                      "name": "Chairs",
+                      "number": 30,
+                      "description": "This room has chairs"
+                    }
+                  ],
+                  "qualities": [
+                    "Air conditioning",
+                    "Natural light"
+                  ]
                 }
             ]
         }
