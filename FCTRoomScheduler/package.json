@@ -23,16 +23,21 @@
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",
     "webpack": "^5.96.1",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.0.0-rc.1"
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.15.2"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.19.3",
+    "@react-leaflet/core": "^2.1.0",
+    "@types/leaflet": "^1.9.14",
     "@vis.gl/react-google-maps": "^1.0.2",
     "firebase": "^10.12.2",
     "gapi-script": "^1.2.0",
+    "internal-ip": "^8.0.0",
+    "leaflet": "^1.9.4",
     "node": "^21.2.0",
     "playwright": "^1.40.1",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.28.0",
     "reactjs-popup": "^2.0.6"
   }
