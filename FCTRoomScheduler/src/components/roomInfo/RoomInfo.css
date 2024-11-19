@@ -32,11 +32,11 @@
     transform: translateY(-2px);
 }
 
-.room-name {
+.header {
     display: 'flex';
-    flexDirection: 'column';
-    alignItems: 'center';
-    justifyContent: 'center'
+    flex-direction: 'column';
+    align-items: 'center';
+    justify-content: 'center'
 }
 
 .centered-container {
@@ -44,7 +44,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 20vh;
+    height: 15vh;
 }
 
 .column {
@@ -61,12 +61,14 @@
 
 .buttons {
     display: flex;
-    height: 3em;
+    height: 4em;
     width: 100px;
+    flex-direction: 'row';
     align-items: center;
+    align-self: 'space-around';
     justify-content: center;
     background-color: #eeeeee4b;
-    border-radius: 3px;
+    border-radius: 1px;
     letter-spacing: 1px;
     transition: all 0.2s linear;
     cursor: pointer;

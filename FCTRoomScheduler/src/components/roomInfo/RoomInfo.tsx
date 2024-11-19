@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import buildingsInfo from '../../storage/buildingsInfo.json';
-
+import './RoomInfo.css';
+import Carousel from "react-multi-carousel";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const RoomInfo = () => {
     const navigate = useNavigate();
@@ -16,6 +18,44 @@ const RoomInfo = () => {
 
     const handleSelect = (index: number) => {
         setCurrentIndex(index);
+    };
+
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 4,
+            slidesToSlide: 4 // optional, default to 1.
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 768 },
+            items: 3,
+            slidesToSlide: 3 // optional, default to 1.
+        },
+        mobile: {
+            breakpoint: { max: 767, min: 464 },
+            items: 2,
+            slidesToSlide: 1 // optional, default to 1.
+        }
+    };
+
+    const CalendarComponent = () => {
+        const [date, setDate] = useState(new Date());
+
+        const onChange = (newDate: Date) => {
+            setDate(newDate);
+        };
+
+        return (
+            <div>
+                <Calendar
+                    onChange={onChange}
+                    value={date}
+                />
+                <div>
+                    <h3>Selected Date: {date.toDateString()}</h3>
+                </div>
+            </div>
+        );
     };
 
     const renderContent = () => {
@@ -56,11 +96,21 @@ const RoomInfo = () => {
                                                                 );
                                                             })}
                                                         </tr>
+                                                        <tr>
+                                                            {room.qualities.map((qlt, index) => {
+                                                                return (
+                                                                    <tr key={index}>
+                                                                        <td>Quality - {index + 1}</td>
+                                                                        <td>{qlt}</td>
+                                                                    </tr>
+                                                                );
+                                                            })}
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <div style={{ flex: 1, background: 'red' }}>
-                                                <img src={room.photo} alt={room.name} style={{ width: '100%' }} />
+                                                <img src={room.photos[1]} alt={room.name} style={{ width: '100%' }} />
                                             </div>
                                         </div>
                                     </div>
@@ -70,17 +120,39 @@ const RoomInfo = () => {
                         return null;
                     })}
                 </div>;
-            //return <div><h1>{roomInfo}------{roomName}+++{location.pathname}</h1></div>;
-            //return <div><h1>{useState('Room Info')}Room Info-----{location.pathname}---------------{RoomInfo}</h1></div>;
             case 'Reservations':
-                console.log('[selectedOption, setSelectedOption]', [selectedOption, setSelectedOption]);
-                console.log('location', location);
-                console.log('building', building);
-                console.log('roomName', roomName);
-                console.log('currentIndex', currentIndex);
-                console.log('building.floors[currentIndex]', building.floors[currentIndex]);
-                console.log('roomInfo', roomInfo);
-                return <div><h1>Reservations{location.pathname}</h1></div>;
+                return building.floors[currentIndex].rooms.map((room, index) => {
+                    if (room.name === roomName) {
+                        return <div><h1>Reservations{location.pathname}</h1><div className="App" style={{ display: "grid", placeItems: "center" }}>
+                            <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
+                                <div style={{ flex: 1, background: 'lightgray', padding: '10px' }}>
+                                    <h2>Calendar</h2>
+                                </div>
+                                <div style={{ flex: 1, background: 'white', padding: '10px' }}>
+                                    <h2>Reservation Details</h2>
+                                    <table>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Time Start</th>
+                                            <th>Time End</th>
+                                        </tr>
+                                        {room.reservations.map((reserve, index) => {
+                                            return (
+                                                <tr key={index}>
+                                                    <td>{reserve.date}</td>
+                                                    <td>{reserve.time_start}</td>
+                                                    <td>{reserve.time_end}</td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </table>
+                                </div>
+                            </div>
+                        </div></div>;
+                    }
+                    return null;
+                });
+
             case 'Make Reserve':
                 return <div><h1>Make Reserve{location.pathname}</h1></div>;
             default:
@@ -89,24 +161,31 @@ const RoomInfo = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', background: 'steelblue' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div style={{ flex: 2, alignContent: 'center', background: 'green' }}>
-                    <button className={'.back-button'} onClick={() => navigate(-1)}>Back</button>
+                <div style={{ flex: 1, alignContent: 'center', background: 'skyblue' }}>
+                    <button className={'back-button'} onClick={() => navigate(-1)}>Back</button>
                 </div>
-                <div style={{ flex: 1, background: 'red' }}>
-                    <div className={"room-name"}><h1>Building {buildingName} Room {roomName}</h1></div>
+                <div style={{ flex: 4, background: 'skyblue' }}>
+                    <div className={"centered-container"}><h1>Building {buildingName} Room {roomName}</h1></div>
                 </div>
-                <div style={{ flex: 1, background: 'blue' }}>
-                    <div className={"room-name"}><h1></h1></div>
+                <div style={{ flex: 1, background: 'skyblue' }}>
+                    <div className={"header"}><h1></h1></div>
                 </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', alignSelf: "space-around" }}>
-                <div className={"rooms-list"}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div style={{ flex: 1 }}></div>
+                <div style={{ flex: 2 }}>
                     <button className="buttons" onClick={() => setSelectedOption('Room Info')}>Room Info</button>
-                    <button onClick={() => setSelectedOption('Reservations')}>Reservations</button>
-                    <button onClick={() => setSelectedOption('Make Reserve')}>Make Reserve</button>
                 </div>
+                <div style={{ flex: 2 }}>
+                    <button className="buttons" onClick={() => setSelectedOption('Reservations')}>Reservations</button>
+                </div>
+                <div style={{ flex: 2 }}>
+                    <button className="buttons" onClick={() => setSelectedOption('Make Reserve')}>Make Reserve</button>
+                </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {renderContent()}
             </div>
         </div>
