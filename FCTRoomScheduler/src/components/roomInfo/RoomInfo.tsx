@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import buildingsInfo from '../../storage/buildingsInfo.json';
+import translations from '../../storage/translations.json';
 import './RoomInfo.css';
-import { Calendar } from 'react-calendar';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
+const language = "en";
+
+let valueSelected: String = '';
 
 const responsive = {
     desktop: {
@@ -24,7 +29,7 @@ const responsive = {
     }
 };
 
-let valueSelected: String = '';
+
 
 let functionBook = () => {
     console.log('booked');
@@ -35,48 +40,56 @@ const RoomInfo = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [selectedOption, setSelectedOption] = useState('Room Info');
+    console.log(translations[language].roomInfo.buttonRoomInfo);
+    const [selectedOption, setSelectedOption] = useState(translations[language].roomInfo.buttonRoomInfo);
     const { buildingName, roomName } = useParams<{ buildingName: string; roomName: string }>();
     const building = buildingsInfo[buildingName];
     const [roomInfo] = buildingsInfo[buildingName];
+
+
+
 
     const handleSelect = (index: number) => {
         setCurrentIndex(index);
     };
 
-    const [, updateState] = React.useState();
-    const forceUpdate = React.useCallback(() => updateState(null), []);
-
-
     const RoomCalendar = () => {
-        let value: Date;
-        let onChange: any;
-        [value, onChange] = useState(new Date());
+        //let value: Date;
+        //let onChange: any;
+        const [value, onChange] = useState(new Date());
         valueSelected = value.toISOString().split('T')[0];
         return (
             <Calendar
-                onChange={onChange}
+                onChange={(value) => onChange(value as Date)}
                 value={value}
-                minDate={new Date('2024-11-01')}
-                maxDate={new Date('2024-11-30')}
-                onClickDay={(value) => { valueSelected = value.toISOString().split('T')[0]; forceUpdate(); }}
+                minDate={new Date('2024-09-01')}
+                maxDate={new Date('2024-12-31')}
+                onClickDay={(value) => { valueSelected = value.toISOString().split('T')[0]; }}
                 onActiveStartDateChange={({ activeStartDate }) => { console.log('month changed', activeStartDate) }}
                 showNavigation={true}
-                tileDisabled={({ date }) => date < new Date('2024-11-01') || date > new Date('2024-11-30')}
                 showNeighboringMonth={true}
                 showWeekNumbers={false}
             />
         )
     }
 
+    const RoomCalendar2 = () => {
+        //let value: Date;
+        //let onChange: any;
+        const [value, onChange] = useState(new Date());
+        valueSelected = value.toISOString().split('T')[0];
+        valueSelected = "2024-11-19";
+        return (
+            <h1>ola</h1>
+        )
+    }
+
     const renderContent = () => {
         switch (selectedOption) {
-            case 'Room Info':
+            case translations[language].roomInfo.buttonRoomInfo:
                 return <div className="rooms-list">
                     {building.floors[currentIndex].rooms.map((room, index) => {
                         if (room.name === roomName) {
-                            console.log('room', room);
-                            console.log('materials', room.materials);
                             return (
                                 <div
                                     key={roomName}
@@ -88,33 +101,32 @@ const RoomInfo = () => {
                                                 <table style={{ alignContent: 'center' }}>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Description</td>
+                                                            <td>{translations[language].roomInfo.Description}</td>
                                                             <td>{room.description}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Size</td>
+                                                            <td>{translations[language].roomInfo.Size}</td>
                                                             <td>{room.size}</td>
                                                         </tr>
-                                                        <tr>
-                                                            {room.materials.map((material, index) => {
-                                                                return (
-                                                                    <tr key={index}>
-                                                                        <td>Material - {index + 1}</td>
-                                                                        <td>{material.name}</td>
-                                                                    </tr>
-                                                                );
-                                                            })}
-                                                        </tr>
-                                                        <tr>
-                                                            {room.qualities.map((qlt, index) => {
-                                                                return (
-                                                                    <tr key={index}>
-                                                                        <td>Quality - {index + 1}</td>
-                                                                        <td>{qlt}</td>
-                                                                    </tr>
-                                                                );
-                                                            })}
-                                                        </tr>
+
+                                                        {room.materials.map((material, index) => {
+                                                            return (
+                                                                <tr key={index}>
+                                                                    <td>Material - {index + 1}</td>
+                                                                    <td>{material.name}</td>
+                                                                </tr>
+                                                            );
+                                                        })}
+
+                                                        {room.qualities.map((qlt, index) => {
+                                                            return (
+                                                                <tr key={index}>
+                                                                    <td>{translations[language].roomInfo.Quality} - {index + 1}</td>
+                                                                    <td>{qlt}</td>
+                                                                </tr>
+                                                            );
+                                                        })}
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -129,28 +141,29 @@ const RoomInfo = () => {
                         return null;
                     })}
                 </div>;
-            case 'Reservations':
+            case translations[language].roomInfo.buttonReservations:
                 return building.floors[currentIndex].rooms.map((room, index) => {
                     if (room.name === roomName) {
-                        return <div><h1>Reservations{location.pathname}</h1><div className="App" style={{ display: 'flex', flexDirection: 'row' }}>
+                        return <div key={index}><h1>Reservations{location.pathname}</h1><div className="App" style={{ display: 'flex', flexDirection: 'row' }}>
                             <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                                 <div style={{ flex: 1, background: 'lightgray', padding: '10px' }}>
-                                    <h2>{<RoomCalendar />}</h2>
+                                    <h2>{<RoomCalendar2/>}</h2>
                                 </div>
                                 <div style={{ flex: 1, background: 'white', padding: '10px' }}>
                                     <h2>Reservation Details</h2>
                                     <table>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Time Start</th>
-                                            <th>Time End</th>
-                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Time Start</th>
+                                                <th>Time End</th>
+                                            </tr></tbody>
                                         {room.reservations.map((reserve, index) => {
                                             if (reserve.date != valueSelected) {
                                                 return null;
                                             }
                                             return (
-                                                <tr>
+                                                <tr key={index}>
                                                     <td>{reserve.date}</td>
                                                     <td>{reserve.time_start}</td>
                                                     <td>{reserve.time_end}</td>
@@ -158,28 +171,6 @@ const RoomInfo = () => {
                                             );
                                         })}
                                     </table>
-                                </div>
-                            </div>
-                        </div></div>;
-                    }
-                    return null;
-                });
-
-            case 'Make Reserve':
-                return building.floors[currentIndex].rooms.map((room, index) => {
-                    if (room.name === roomName) {
-                        return <div><h1>Make Reserve</h1><div className="App" style={{ display: 'flex', flexDirection: 'row' }}>
-                            <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
-                                <div style={{ flex: 1, background: 'lightgray', padding: '10px' }}>
-                                    <h2>{<RoomCalendar />}</h2>
-                                </div>
-                                <div style={{ flex: 1, background: 'white', padding: '10px' }}>
-                                    <h2>Reservation Time</h2>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
-                                        <label>Time Start<input name="time-start" id="timeStart" type="time"/></label>
-                                        <label>Time End <input name="time-end" id="timeEnd" type="time"/></label>
-                                        <button className={'reserve-button'} onClick={() => functionBook()}>Book</button>
-                                    </div>
                                 </div>
                             </div>
                         </div></div>;
@@ -195,10 +186,10 @@ const RoomInfo = () => {
         <div style={{ display: 'flex', flexDirection: 'column', background: 'steelblue' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div style={{ flex: 1, alignContent: 'center', background: 'skyblue' }}>
-                    <button className={'back-button'} onClick={() => navigate(-1)}>Back</button>
+                    <button className={'back-button'} onClick={() => navigate(-1)}>{translations[language].roomInfo.buttonBack}</button>
                 </div>
                 <div style={{ flex: 4, background: 'skyblue' }}>
-                    <div className={"centered-container"}><h1>Building {buildingName} Room {roomName}</h1></div>
+                    <div className={"centered-container"}><h1>{translations[language].roomInfo.building} {buildingName} {translations[language].roomInfo.room} {roomName}</h1></div>
                 </div>
                 <div style={{ flex: 1, background: 'skyblue' }}>
                     <div className={"header"}><h1></h1></div>
@@ -207,17 +198,17 @@ const RoomInfo = () => {
             <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div style={{ flex: 1 }}></div>
                 <div style={{ flex: 2 }}>
-                    <button className="buttons" onClick={() => setSelectedOption('Room Info')}>Room Info</button>
+                    <button className="buttons" onClick={() => setSelectedOption(translations[language].roomInfo.buttonRoomInfo)}>{translations[language].roomInfo.buttonRoomInfo}</button>
                 </div>
                 <div style={{ flex: 2 }}>
-                    <button className="buttons" onClick={() => setSelectedOption('Reservations')}>Reservations</button>
-                </div>
-                <div style={{ flex: 2 }}>
-                    <button className="buttons" onClick={() => setSelectedOption('Make Reserve')}>Make Reserve</button>
+                    <button className="buttons" onClick={() => setSelectedOption(translations[language].roomInfo.buttonReservations)}>{translations[language].roomInfo.buttonReservations}</button>
                 </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {renderContent()}
+            </div>
+            <div>
+
             </div>
         </div>
     );

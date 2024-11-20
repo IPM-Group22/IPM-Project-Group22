@@ -1,0 +1,34 @@
+{
+  "en": {
+    "roomInfo": {
+      "building": "Building",
+      "room": "Room",
+      "buttonBack": "Back",
+      "buttonRoomInfo": "Room Info",
+      "buttonReservations": "Reservations",
+      "Description": "Description",
+      "Size": "Size",
+      "Quality": "Quality"
+    },
+    "home": {
+      "building": "Building",
+      "room": "Room"
+    }
+  },
+  "pt": {
+    "roomInfo": {
+      "building": "Edificio",
+      "room": "Sala",
+      "buttonBack": "Atrás",
+      "buttonRoomInfo": "Informação da Sala",
+      "buttonReservations": "Reservas",
+      "Description": "Descrição",
+      "Size": "Tamanho",
+      "Quality": "Qualidade"
+    },
+    "home": {
+      "building": "Building",
+      "room": "Room"
+    }
+  }
+}
