@@ -73,17 +73,6 @@ const RoomInfo = () => {
         )
     }
 
-    const RoomCalendar2 = () => {
-        //let value: Date;
-        //let onChange: any;
-        const [value, onChange] = useState(new Date());
-        valueSelected = value.toISOString().split('T')[0];
-        valueSelected = "2024-11-19";
-        return (
-            <h1>ola</h1>
-        )
-    }
-
     const renderContent = () => {
         switch (selectedOption) {
             case translations[language].roomInfo.buttonRoomInfo:
@@ -147,7 +136,7 @@ const RoomInfo = () => {
                         return <div key={index}><h1>Reservations{location.pathname}</h1><div className="App" style={{ display: 'flex', flexDirection: 'row' }}>
                             <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                                 <div style={{ flex: 1, background: 'lightgray', padding: '10px' }}>
-                                    <h2>{<RoomCalendar2/>}</h2>
+                                    <h2>{<RoomCalendar/>}</h2>
                                 </div>
                                 <div style={{ flex: 1, background: 'white', padding: '10px' }}>
                                     <h2>Reservation Details</h2>

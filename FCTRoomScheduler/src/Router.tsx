@@ -6,6 +6,7 @@ import Home from "./components/home/Home";
 import Building from "./components/buildingPage/Building";
 import RoomInfo from "./components/roomInfo/RoomInfo";
 import Error from "./components/error/Error";
+import Account from './components/accountPage/Account';
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 "path": "*",
                 "element": <Error />,
+            },
+            {
+                "path": "/account",
+                "element": <Account />,
             }
         ]
     },
