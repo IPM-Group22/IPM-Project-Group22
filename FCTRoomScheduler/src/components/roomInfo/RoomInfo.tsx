@@ -24,6 +24,12 @@ const responsive = {
     }
 };
 
+let valueSelected: String = '';
+
+let functionBook = () => {
+    console.log('booked');
+    console.log(document.getElementById("timeEnd"));
+}
 
 const RoomInfo = () => {
     const navigate = useNavigate();
@@ -33,12 +39,15 @@ const RoomInfo = () => {
     const { buildingName, roomName } = useParams<{ buildingName: string; roomName: string }>();
     const building = buildingsInfo[buildingName];
     const [roomInfo] = buildingsInfo[buildingName];
-    
+
     const handleSelect = (index: number) => {
         setCurrentIndex(index);
     };
 
-    let valueSelected: String = '';
+    const [, updateState] = React.useState();
+    const forceUpdate = React.useCallback(() => updateState(null), []);
+
+
     const RoomCalendar = () => {
         let value: Date;
         let onChange: any;
@@ -50,7 +59,7 @@ const RoomInfo = () => {
                 value={value}
                 minDate={new Date('2024-11-01')}
                 maxDate={new Date('2024-11-30')}
-                onClickDay={(value) => { valueSelected = value.toISOString().split('T')[0]; console.log('1valueSelected', valueSelected); }}
+                onClickDay={(value) => { valueSelected = value.toISOString().split('T')[0]; forceUpdate(); }}
                 onActiveStartDateChange={({ activeStartDate }) => { console.log('month changed', activeStartDate) }}
                 showNavigation={true}
                 tileDisabled={({ date }) => date < new Date('2024-11-01') || date > new Date('2024-11-30')}
@@ -126,7 +135,7 @@ const RoomInfo = () => {
                         return <div><h1>Reservations{location.pathname}</h1><div className="App" style={{ display: 'flex', flexDirection: 'row' }}>
                             <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                                 <div style={{ flex: 1, background: 'lightgray', padding: '10px' }}>
-                                    <h2>{<RoomCalendar/>}</h2>
+                                    <h2>{<RoomCalendar />}</h2>
                                 </div>
                                 <div style={{ flex: 1, background: 'white', padding: '10px' }}>
                                     <h2>Reservation Details</h2>
@@ -136,12 +145,12 @@ const RoomInfo = () => {
                                             <th>Time Start</th>
                                             <th>Time End</th>
                                         </tr>
-                                        {room.reservations.map((reserve, index) => {      
+                                        {room.reservations.map((reserve, index) => {
                                             if (reserve.date != valueSelected) {
                                                 return null;
                                             }
                                             return (
-                                                <tr key={index}>
+                                                <tr>
                                                     <td>{reserve.date}</td>
                                                     <td>{reserve.time_start}</td>
                                                     <td>{reserve.time_end}</td>
@@ -157,7 +166,26 @@ const RoomInfo = () => {
                 });
 
             case 'Make Reserve':
-                return <div><h1>Make Reserve{location.pathname}</h1></div>;
+                return building.floors[currentIndex].rooms.map((room, index) => {
+                    if (room.name === roomName) {
+                        return <div><h1>Make Reserve</h1><div className="App" style={{ display: 'flex', flexDirection: 'row' }}>
+                            <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
+                                <div style={{ flex: 1, background: 'lightgray', padding: '10px' }}>
+                                    <h2>{<RoomCalendar />}</h2>
+                                </div>
+                                <div style={{ flex: 1, background: 'white', padding: '10px' }}>
+                                    <h2>Reservation Time</h2>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+                                        <label>Time Start<input name="time-start" id="timeStart" type="time"/></label>
+                                        <label>Time End <input name="time-end" id="timeEnd" type="time"/></label>
+                                        <button className={'reserve-button'} onClick={() => functionBook()}>Book</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>;
+                    }
+                    return null;
+                });
             default:
                 return null;
         }

@@ -81,3 +81,18 @@
     justify-content: center;
     left: 75px;
 }
+
+.reserve-button {
+    display: flex;
+    height: 3em;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: #458f054b;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #208700;
+}
