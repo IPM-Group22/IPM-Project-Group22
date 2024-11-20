@@ -29,6 +29,7 @@
   "dependencies": {
     "@react-google-maps/api": "^2.19.3",
     "@vis.gl/react-google-maps": "^1.0.2",
+    "babel-loader": "^9.2.1",
     "firebase": "^10.12.2",
     "framer-motion": "^11.11.17",
     "gapi-script": "^1.2.0",
@@ -37,6 +38,9 @@
     "react-calendar": "^5.1.0",
     "react-multi-carousel": "^2.8.5",
     "react-native": "^0.76.2",
+    "react-native-arrow": "^1.0.5",
+    "react-native-calendars": "^1.1307.0",
+    "react-native-paper": "^5.12.5",
     "react-router-dom": "^6.28.0",
     "reactjs-popup": "^2.0.6"
   }

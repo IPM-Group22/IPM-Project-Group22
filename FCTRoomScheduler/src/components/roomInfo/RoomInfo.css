@@ -75,3 +75,9 @@
     border: none;
     background: #fff;
 }
+
+.room-info-card {
+    display: flex;
+    justify-content: center;
+    left: 75px;
+}

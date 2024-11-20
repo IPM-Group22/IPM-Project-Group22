@@ -3,9 +3,27 @@ import "react-multi-carousel/lib/styles.css";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import buildingsInfo from '../../storage/buildingsInfo.json';
 import './RoomInfo.css';
-import Carousel from "react-multi-carousel";
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import { Calendar } from 'react-calendar';
+
+
+const responsive = {
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 4,
+        slidesToSlide: 4 // optional, default to 1.
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 768 },
+        items: 3,
+        slidesToSlide: 3 // optional, default to 1.
+    },
+    mobile: {
+        breakpoint: { max: 767, min: 464 },
+        items: 2,
+        slidesToSlide: 1 // optional, default to 1.
+    }
+};
+
 
 const RoomInfo = () => {
     const navigate = useNavigate();
@@ -15,48 +33,32 @@ const RoomInfo = () => {
     const { buildingName, roomName } = useParams<{ buildingName: string; roomName: string }>();
     const building = buildingsInfo[buildingName];
     const [roomInfo] = buildingsInfo[buildingName];
-
+    
     const handleSelect = (index: number) => {
         setCurrentIndex(index);
     };
 
-    const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 4,
-            slidesToSlide: 4 // optional, default to 1.
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 768 },
-            items: 3,
-            slidesToSlide: 3 // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 767, min: 464 },
-            items: 2,
-            slidesToSlide: 1 // optional, default to 1.
-        }
-    };
-
-    const CalendarComponent = () => {
-        const [date, setDate] = useState(new Date());
-
-        const onChange = (newDate: Date) => {
-            setDate(newDate);
-        };
-
+    let valueSelected: String = '';
+    const RoomCalendar = () => {
+        let value: Date;
+        let onChange: any;
+        [value, onChange] = useState(new Date());
+        valueSelected = value.toISOString().split('T')[0];
         return (
-            <div>
-                <Calendar
-                    onChange={onChange}
-                    value={date}
-                />
-                <div>
-                    <h3>Selected Date: {date.toDateString()}</h3>
-                </div>
-            </div>
-        );
-    };
+            <Calendar
+                onChange={onChange}
+                value={value}
+                minDate={new Date('2024-11-01')}
+                maxDate={new Date('2024-11-30')}
+                onClickDay={(value) => { valueSelected = value.toISOString().split('T')[0]; console.log('1valueSelected', valueSelected); }}
+                onActiveStartDateChange={({ activeStartDate }) => { console.log('month changed', activeStartDate) }}
+                showNavigation={true}
+                tileDisabled={({ date }) => date < new Date('2024-11-01') || date > new Date('2024-11-30')}
+                showNeighboringMonth={true}
+                showWeekNumbers={false}
+            />
+        )
+    }
 
     const renderContent = () => {
         switch (selectedOption) {
@@ -69,14 +71,12 @@ const RoomInfo = () => {
                             return (
                                 <div
                                     key={roomName}
-                                    className="room-card"
-                                //onClick={() => console.log(building.floors[currentIndex].rooms[index])}
-                                //onClick={() => console.log(room)}
+                                    className="room-info-card"
                                 >
-                                    <div className="row">
+                                    <div >
                                         <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                            <div style={{ flex: 2, alignContent: 'center', background: 'green' }}>
-                                                <table>
+                                            <div style={{ flex: 1, alignContent: 'center' }}>
+                                                <table style={{ alignContent: 'center' }}>
                                                     <tbody>
                                                         <tr>
                                                             <td>Description</td>
@@ -109,7 +109,7 @@ const RoomInfo = () => {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div style={{ flex: 1, background: 'red' }}>
+                                            <div style={{ flex: 1 }}>
                                                 <img src={room.photos[1]} alt={room.name} style={{ width: '100%' }} />
                                             </div>
                                         </div>
@@ -123,10 +123,10 @@ const RoomInfo = () => {
             case 'Reservations':
                 return building.floors[currentIndex].rooms.map((room, index) => {
                     if (room.name === roomName) {
-                        return <div><h1>Reservations{location.pathname}</h1><div className="App" style={{ display: "grid", placeItems: "center" }}>
+                        return <div><h1>Reservations{location.pathname}</h1><div className="App" style={{ display: 'flex', flexDirection: 'row' }}>
                             <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                                 <div style={{ flex: 1, background: 'lightgray', padding: '10px' }}>
-                                    <h2>Calendar</h2>
+                                    <h2>{<RoomCalendar/>}</h2>
                                 </div>
                                 <div style={{ flex: 1, background: 'white', padding: '10px' }}>
                                     <h2>Reservation Details</h2>
@@ -136,7 +136,10 @@ const RoomInfo = () => {
                                             <th>Time Start</th>
                                             <th>Time End</th>
                                         </tr>
-                                        {room.reservations.map((reserve, index) => {
+                                        {room.reservations.map((reserve, index) => {      
+                                            if (reserve.date != valueSelected) {
+                                                return null;
+                                            }
                                             return (
                                                 <tr key={index}>
                                                     <td>{reserve.date}</td>
