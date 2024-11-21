@@ -7,9 +7,11 @@ import './RoomInfo.css';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-const language = "en";
+const language = "pt";
 
 let valueSelected: String = '';
+let roomIndex: number = 0;
+let ocuppiedHours: Array<number> = [];
 
 const responsive = {
     desktop: {
@@ -31,10 +33,6 @@ const responsive = {
 
 
 
-let functionBook = () => {
-    console.log('booked');
-    console.log(document.getElementById("timeEnd"));
-}
 
 const RoomInfo = () => {
     const navigate = useNavigate();
@@ -47,7 +45,50 @@ const RoomInfo = () => {
 
     const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
 
+    let functionBook = () => {
+        const timeStartInput = document.getElementById("timeStart") as HTMLInputElement;
+        const timeEndInput = document.getElementById("timeEnd") as HTMLInputElement;
+            
+        if (!timeStartInput.value || !timeEndInput.value || valueSelected === '') {
+            alert('Must define date, timeStart and timeEnd inputs');
+        }
+    
+        else if (timeStartInput.value > timeEndInput.value) {
+            alert('Time Start must be before Time End');
+        }
+        else if (selectedDate < new Date().toISOString().split('T')[0]) {
+            alert('Date must be in the future');
+        }
+        else if (timeStartInput && timeEndInput) {
+            const timeStart = timeStartInput.value;
+            const timeEnd = timeEndInput.value;
 
+            // Check for time conflicts with existing reservations
+            const room = building.floors[currentIndex].rooms.find(room => room.name === roomName);
+            if (room) {
+                const hasConflict = room.reservations.some(reservation => {
+                    return reservation.date === valueSelected &&
+                        ((timeStart >= reservation.time_start && timeStart < reservation.time_end) ||
+                        (timeEnd > reservation.time_start && timeEnd <= reservation.time_end) ||
+                        (timeStart <= reservation.time_start && timeEnd >= reservation.time_end));
+                });
+        
+                if (hasConflict) {
+                    alert('Selected time conflicts with an existing reservation');
+                    return;
+                }
+            }
+
+            const reservation = { date: valueSelected, time_start: timeStart, time_end: timeEnd, user: "user_test" };
+            buildingsInfo[buildingName].floors[currentIndex].rooms[roomIndex]['reservations'].push(reservation);
+            
+            alert('Booked successfully for ' + valueSelected + ' from ' + timeStart + ' to ' + timeEnd);
+        }
+        else {
+        console.log('Input elements not found');
+    }
+        
+    }
 
     const handleSelect = (index: number) => {
         setCurrentIndex(index);
@@ -74,6 +115,7 @@ const RoomInfo = () => {
                 showNavigation={true}
                 showNeighboringMonth={true}
                 showWeekNumbers={false}
+                locale={translations[language].roomInfo.calendarLocale}
             />
         )
     }
@@ -145,13 +187,13 @@ const RoomInfo = () => {
                                         <h2><RoomCalendar /></h2>
                                     </div>
                                     <div className="details-container">
-                                        <h2>Reservation Details</h2>
+                                        <h2>{translations[language].roomInfo.completedReservations}</h2>
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <th>Date</th>
-                                                    <th>Time Start</th>
-                                                    <th>Time End</th>
+                                                    <th>{translations[language].roomInfo.date}</th>
+                                                    <th>{translations[language].roomInfo.timeStart}</th>
+                                                    <th>{translations[language].roomInfo.timeEnd}</th>
                                                 </tr>
                                                 {room.reservations.map((reserve, index) => {
                                                     if (reserve.date != valueSelected) {
@@ -169,13 +211,13 @@ const RoomInfo = () => {
                                         </table>
                                     </div>
                                     <div className="details-container">
-                                        <h2>Book your slot</h2>
+                                        <h2>{translations[language].roomInfo.bookYourSlot}</h2>
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <th>Date</th>
-                                                    <th>Time Start</th>
-                                                    <th>Time End</th>
+                                                    <th>{translations[language].roomInfo.date}</th>
+                                                    <th>{translations[language].roomInfo.timeStart}</th>
+                                                    <th>{translations[language].roomInfo.timeEnd}</th>
                                                 </tr>
                                                 <tr>
                                                     <td>{valueSelected}</td>
@@ -184,6 +226,7 @@ const RoomInfo = () => {
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <button className={'back-button'} onClick={() => functionBook()}>{translations[language].roomInfo.buttonBack}</button>
                                     </div>
                                 </div>
                             </div>

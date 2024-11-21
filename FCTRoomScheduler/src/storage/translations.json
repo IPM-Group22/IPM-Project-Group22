@@ -8,7 +8,13 @@
       "buttonReservations": "Reservations",
       "Description": "Description",
       "Size": "Size",
-      "Quality": "Quality"
+      "Quality": "Quality",
+      "calendarLocale": "en",
+      "completedReservations": "Completed Reservations",
+      "date": "Date",
+      "timeStart": "Start Time",
+      "timeEnd": "End Time",
+      "bookYourSlot": "Book Your Slot"
     },
     "home": {
       "building": "Building",
@@ -24,7 +30,13 @@
       "buttonReservations": "Reservas",
       "Description": "Descrição",
       "Size": "Tamanho",
-      "Quality": "Qualidade"
+      "Quality": "Qualidade",
+      "calendarLocale": "pt-PT",
+      "completedReservations": "Reservas Completas",
+      "date": "Data",
+      "timeStart": "Hora de Início",
+      "timeEnd": "Hora de Fim",
+      "bookYourSlot": "Reserva a tua sala"
     },
     "home": {
       "building": "Building",
