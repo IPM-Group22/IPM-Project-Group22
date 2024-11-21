@@ -117,26 +117,32 @@ const RoomInfo = () => {
 
     const RoomCalendar = () => {
         const [value, onChange] = useState(new Date());
+        const [activeStartDate, setActiveStartDate] = useState(new Date());
+
         
         const handleDateChange = (value: Date) => {
             onChange(value);
             setSelectedDate(value.toISOString().split('T')[0]);
             valueSelected = value.toISOString().split('T')[0];
+            setActiveStartDate(value);
         };
 
-        console.log(valueSelected);
+        const handleActiveStartDateChange = ({ activeStartDate }: { activeStartDate: Date }) => {
+            setActiveStartDate(activeStartDate);
+        };
+
         return (
             <Calendar
                 onChange={handleDateChange}
                 value={value}
                 minDate={new Date('2024-09-01')}
                 maxDate={new Date('2024-12-31')}
-                //onClickDay={() => { setSelectedOption(translations[language].roomInfo.buttonReservations) }}
-                //onActiveStartDateChange={({ activeStartDate }) => { console.log('month changed', activeStartDate) }}
                 showNavigation={true}
                 showNeighboringMonth={true}
                 showWeekNumbers={false}
                 locale={translations[language].roomInfo.calendarLocale}
+                activeStartDate={activeStartDate}
+                onActiveStartDateChange={handleActiveStartDateChange}
             />
         )
     }
@@ -201,6 +207,7 @@ const RoomInfo = () => {
             case translations[language].roomInfo.buttonReservations:
                 return building.floors[currentIndex].rooms.map((room, index) => {
                     if (room.name === roomName) {
+                        const reservationsForSelectedDate = room.reservations.filter(reserve => reserve.date === valueSelected);
                         return (
                             <div key={index}>
                                 <div className="reservations-container">
@@ -209,45 +216,46 @@ const RoomInfo = () => {
                                     </div>
                                     <div className="details-container">
                                         <h2>{translations[language].roomInfo.completedReservations}</h2>
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <th>{translations[language].roomInfo.date}</th>
-                                                    <th>{translations[language].roomInfo.timeStart}</th>
-                                                    <th>{translations[language].roomInfo.timeEnd}</th>
-                                                </tr>
-                                                {room.reservations.map((reserve, index) => {
-                                                    if (reserve.date != valueSelected) {
-                                                        return null;
-                                                    }
-                                                    return (
+                                        {reservationsForSelectedDate.length > 0 ? (
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>{translations[language].roomInfo.date}</th>
+                                                        <th>{translations[language].roomInfo.timeStart}</th>
+                                                        <th>{translations[language].roomInfo.timeEnd}</th>
+                                                    </tr>
+                                                    {reservationsForSelectedDate.map((reserve, index) => (
                                                         <tr key={index}>
                                                             <td>{reserve.date}</td>
                                                             <td>{reserve.time_start}</td>
                                                             <td>{reserve.time_end}</td>
                                                         </tr>
-                                                    );
-                                                })}
-                                            </tbody>
-                                        </table>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        ) : (
+                                            <p>{translations[language].roomInfo.noReservations}</p>
+                                        )}
                                     </div>
-                                    <div className="details-container">
+                                    <div className="details-container book-slot-container">
                                         <h2>{translations[language].roomInfo.bookYourSlot}</h2>
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <th>{translations[language].roomInfo.date}</th>
-                                                    <th>{translations[language].roomInfo.timeStart}</th>
-                                                    <th>{translations[language].roomInfo.timeEnd}</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>{valueSelected}</td>
-                                                    <td><input type="time" id="timeStart" name="timeStart" /></td>
-                                                    <td><input type="time" id="timeEnd" name="timeEnd" /></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <button className={'back-button'} onClick={() => functionBook()}>{translations[language].roomInfo.buttonBook}</button>
+                                        <div className="book-slot">
+                                            <div className="book-slot-row">
+                                                <label>{translations[language].roomInfo.date}</label>
+                                                <span>{valueSelected}</span>
+                                            </div>
+                                            <div className="book-slot-row">
+                                                <label>{translations[language].roomInfo.timeStart}</label>
+                                                <input type="time" id="timeStart" name="timeStart" />
+                                            </div>
+                                            <div className="book-slot-row">
+                                                <label>{translations[language].roomInfo.timeEnd}</label>
+                                                <input type="time" id="timeEnd" name="timeEnd" />
+                                            </div>
+                                            <div className="book-button-container">
+                                                <button className="book-button" onClick={() => functionBook()}>{translations[language].roomInfo.buttonBook}</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -223,3 +223,62 @@ th {
 .details-container tr:hover {
     background: #f9f9f9;
 }
+
+
+/* RoomInfo.css */
+
+.book-slot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.book-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.book-slot-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.book-slot-row label {
+    flex: 1;
+    text-align: left;
+}
+
+.book-slot-row span,
+.book-slot-row input {
+    flex: 1;
+    text-align: right;
+}
+
+.book-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.book-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.book-button:hover {
+    background-color: #0056b3;
+}

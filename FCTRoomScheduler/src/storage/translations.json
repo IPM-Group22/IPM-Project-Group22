@@ -20,7 +20,8 @@
       "alertCheck3": "The date must be in the future",
       "alertCheck4": "The room is already booked for that time",
       "alertSuccess": "The room was successfully booked for the selected time",
-      "buttonBook": "Book"
+      "buttonBook": "Book",
+      "noReservations": "No reservations for the selected date"
     },
     "home": {
       "building": "Building",
@@ -48,7 +49,8 @@
       "alertCheck3": "A data deve ser no futuro",
       "alertCheck4": "A sala já está reservada para esse horário",
       "alertSuccess": "A sala foi reservada com sucesso para o horário selecionado",
-      "buttonBook": "Reservar"
+      "buttonBook": "Reservar",
+      "noReservations": "Sem reservas para a data selecionada"
     },
     "home": {
       "building": "Building",
