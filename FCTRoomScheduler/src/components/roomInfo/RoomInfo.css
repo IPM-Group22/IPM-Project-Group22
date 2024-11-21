@@ -171,3 +171,55 @@ th, td {
 th {
     background-color: #f8f9fa;
 }
+
+/* RoomInfo.css */
+
+.reservations-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.calendar-container {
+    flex: 1;
+    background: #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.details-container {
+    flex: 1;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-left: 10px;
+}
+
+.details-container h2 {
+    margin-bottom: 20px;
+}
+
+.details-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.details-container th, .details-container td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.details-container th {
+    background: #f0f0f0;
+}
+
+.details-container tr:hover {
+    background: #f9f9f9;
+}

@@ -40,12 +40,12 @@ const RoomInfo = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [currentIndex, setCurrentIndex] = useState(0);
-    console.log(translations[language].roomInfo.buttonRoomInfo);
     const [selectedOption, setSelectedOption] = useState(translations[language].roomInfo.buttonRoomInfo);
     const { buildingName, roomName } = useParams<{ buildingName: string; roomName: string }>();
     const building = buildingsInfo[buildingName];
     const [roomInfo] = buildingsInfo[buildingName];
 
+    const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
 
 
 
@@ -54,18 +54,23 @@ const RoomInfo = () => {
     };
 
     const RoomCalendar = () => {
-        //let value: Date;
-        //let onChange: any;
         const [value, onChange] = useState(new Date());
-        valueSelected = value.toISOString().split('T')[0];
+        
+        const handleDateChange = (value: Date) => {
+            onChange(value);
+            setSelectedDate(value.toISOString().split('T')[0]);
+            valueSelected = value.toISOString().split('T')[0];
+        };
+
+        console.log(valueSelected);
         return (
             <Calendar
-                onChange={(value) => onChange(value as Date)}
+                onChange={handleDateChange}
                 value={value}
                 minDate={new Date('2024-09-01')}
                 maxDate={new Date('2024-12-31')}
-                onClickDay={(value) => { valueSelected = value.toISOString().split('T')[0]; }}
-                onActiveStartDateChange={({ activeStartDate }) => { console.log('month changed', activeStartDate) }}
+                //onClickDay={() => { setSelectedOption(translations[language].roomInfo.buttonReservations) }}
+                //onActiveStartDateChange={({ activeStartDate }) => { console.log('month changed', activeStartDate) }}
                 showNavigation={true}
                 showNeighboringMonth={true}
                 showWeekNumbers={false}
@@ -133,36 +138,56 @@ const RoomInfo = () => {
             case translations[language].roomInfo.buttonReservations:
                 return building.floors[currentIndex].rooms.map((room, index) => {
                     if (room.name === roomName) {
-                        return <div key={index}><h1>Reservations{location.pathname}</h1><div className="App" style={{ display: 'flex', flexDirection: 'row' }}>
-                            <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
-                                <div style={{ flex: 1, background: 'lightgray', padding: '10px' }}>
-                                    <h2>{<RoomCalendar/>}</h2>
-                                </div>
-                                <div style={{ flex: 1, background: 'white', padding: '10px' }}>
-                                    <h2>Reservation Details</h2>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Time Start</th>
-                                                <th>Time End</th>
-                                            </tr></tbody>
-                                        {room.reservations.map((reserve, index) => {
-                                            if (reserve.date != valueSelected) {
-                                                return null;
-                                            }
-                                            return (
-                                                <tr key={index}>
-                                                    <td>{reserve.date}</td>
-                                                    <td>{reserve.time_start}</td>
-                                                    <td>{reserve.time_end}</td>
+                        return (
+                            <div key={index}>
+                                <div className="reservations-container">
+                                    <div className="calendar-container">
+                                        <h2><RoomCalendar /></h2>
+                                    </div>
+                                    <div className="details-container">
+                                        <h2>Reservation Details</h2>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Time Start</th>
+                                                    <th>Time End</th>
                                                 </tr>
-                                            );
-                                        })}
-                                    </table>
+                                                {room.reservations.map((reserve, index) => {
+                                                    if (reserve.date != valueSelected) {
+                                                        return null;
+                                                    }
+                                                    return (
+                                                        <tr key={index}>
+                                                            <td>{reserve.date}</td>
+                                                            <td>{reserve.time_start}</td>
+                                                            <td>{reserve.time_end}</td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className="details-container">
+                                        <h2>Book your slot</h2>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Time Start</th>
+                                                    <th>Time End</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>{valueSelected}</td>
+                                                    <td><input type="time" id="timeStart" name="timeStart" /></td>
+                                                    <td><input type="time" id="timeEnd" name="timeEnd" /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div></div>;
+                        );
                     }
                     return null;
                 });
