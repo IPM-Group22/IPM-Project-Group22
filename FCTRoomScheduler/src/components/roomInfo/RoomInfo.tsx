@@ -7,7 +7,7 @@ import './RoomInfo.css';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-const language = "pt";
+const language = "en";
 
 let valueSelected: String = '';
 let roomIndex: number = 0;
@@ -44,6 +44,28 @@ const RoomInfo = () => {
 
     const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
 
+    const findFloorIndex = (buildingName: string, roomName: string): number | null => {
+        const building = buildingsInfo[buildingName];
+        if (!building) {
+            console.log('Building not found');
+            return null;
+        }
+    
+        for (let floorIndex = 0; floorIndex < building.floors.length; floorIndex++) {
+            const floor = building.floors[floorIndex];
+            for (let roomIndex = 0; roomIndex < floor.rooms.length; roomIndex++) {
+                const room = floor.rooms[roomIndex];
+                if (room.name === roomName) {
+                    return floorIndex;
+                }
+            }
+        }
+    
+        console.log('Room not found in the building');
+        return null;
+    };
+    console.log('RoomInfo', buildingName, roomName, findFloorIndex(buildingName, roomName));
+
     let functionBook = () => {
         const timeStartInput = document.getElementById("timeStart") as HTMLInputElement;
         const timeEndInput = document.getElementById("timeEnd") as HTMLInputElement;
@@ -52,7 +74,7 @@ const RoomInfo = () => {
             alert(translations[language].roomInfo.alertCheck1);
         }
     
-        else if (timeStartInput.value > timeEndInput.value) {
+        else if (timeStartInput.value >= timeEndInput.value) {
             alert(translations[language].roomInfo.alertCheck2);
         }
         else if (selectedDate < new Date().toISOString().split('T')[0]) {
