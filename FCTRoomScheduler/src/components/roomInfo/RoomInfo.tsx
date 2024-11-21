@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "react-multi-carousel/lib/styles.css";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import buildingsInfo from '../../storage/buildingsInfo.json';
 import translations from '../../storage/translations.json';
@@ -36,7 +35,6 @@ const responsive = {
 const RoomInfo = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState(translations[language].roomInfo.buttonRoomInfo);
     const { buildingName, roomName } = useParams<{ buildingName: string; roomName: string }>();
     const building = buildingsInfo[buildingName];
@@ -64,7 +62,32 @@ const RoomInfo = () => {
         console.log('Room not found in the building');
         return null;
     };
-    console.log('RoomInfo', buildingName, roomName, findFloorIndex(buildingName, roomName));
+
+    const [floorIndex, setFloorIndex] = useState(findFloorIndex(buildingName, roomName));
+
+    const findRoomIndex = (buildingName: string, roomName: string): number | null => {
+        const building = buildingsInfo[buildingName];
+        if (!building) {
+            console.log('Building not found');
+            return null;
+        }
+
+        for (let floorIndex = 0; floorIndex < building.floors.length; floorIndex++) {
+            const floor = building.floors[floorIndex];
+            for (let roomIndex = 0; roomIndex < floor.rooms.length; roomIndex++) {
+                const room = floor.rooms[roomIndex];
+                if (room.name === roomName) {
+
+                    return roomIndex;
+                }
+            }
+        }
+
+        console.log('Room not found in the building');
+        return null;
+    };
+
+    console.log('RoomInfo', buildingName, roomName, findFloorIndex(buildingName, roomName), findRoomIndex(buildingName, roomName));
 
     let functionBook = () => {
         const timeStartInput = document.getElementById("timeStart") as HTMLInputElement;
@@ -85,7 +108,7 @@ const RoomInfo = () => {
             const timeEnd = timeEndInput.value;
 
             // Check for time conflicts with existing reservations
-            const room = building.floors[currentIndex].rooms.find(room => room.name === roomName);
+            const room = building.floors[floorIndex].rooms.find(room => room.name === roomName);
             if (room) {
                 const hasConflict = room.reservations.some(reservation => {
                     return reservation.date === valueSelected &&
@@ -101,7 +124,7 @@ const RoomInfo = () => {
             }
 
             const reservation = { date: valueSelected, time_start: timeStart, time_end: timeEnd, user: "user_test" };
-            buildingsInfo[buildingName].floors[currentIndex].rooms[roomIndex]['reservations'].push(reservation);
+            buildingsInfo[buildingName].floors[floorIndex].rooms[roomIndex]['reservations'].push(reservation);
             
             alert(translations[language].roomInfo.alertSuccess);
         }
@@ -111,9 +134,6 @@ const RoomInfo = () => {
         
     }
 
-    const handleSelect = (index: number) => {
-        setCurrentIndex(index);
-    };
 
     const RoomCalendar = () => {
         const [value, onChange] = useState(new Date());
@@ -151,7 +171,7 @@ const RoomInfo = () => {
         switch (selectedOption) {
             case translations[language].roomInfo.buttonRoomInfo:
                 return <div className="rooms-list">
-                    {building.floors[currentIndex].rooms.map((room, index) => {
+                    {building.floors[floorIndex].rooms.map((room, index) => {
                         if (room.name === roomName) {
                             return (
                                 <div
@@ -205,7 +225,7 @@ const RoomInfo = () => {
                     })}
                 </div>;
             case translations[language].roomInfo.buttonReservations:
-                return building.floors[currentIndex].rooms.map((room, index) => {
+                return building.floors[floorIndex].rooms.map((room, index) => {
                     if (room.name === roomName) {
                         const reservationsForSelectedDate = room.reservations.filter(reserve => reserve.date === valueSelected);
                         return (
