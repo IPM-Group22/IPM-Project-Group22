@@ -11,7 +11,6 @@ const language = "pt";
 
 let valueSelected: String = '';
 let roomIndex: number = 0;
-let ocuppiedHours: Array<number> = [];
 
 const responsive = {
     desktop: {
@@ -50,14 +49,14 @@ const RoomInfo = () => {
         const timeEndInput = document.getElementById("timeEnd") as HTMLInputElement;
             
         if (!timeStartInput.value || !timeEndInput.value || valueSelected === '') {
-            alert('Must define date, timeStart and timeEnd inputs');
+            alert(translations[language].roomInfo.alertCheck1);
         }
     
         else if (timeStartInput.value > timeEndInput.value) {
-            alert('Time Start must be before Time End');
+            alert(translations[language].roomInfo.alertCheck2);
         }
         else if (selectedDate < new Date().toISOString().split('T')[0]) {
-            alert('Date must be in the future');
+            alert(translations[language].roomInfo.alertCheck3);
         }
         else if (timeStartInput && timeEndInput) {
             const timeStart = timeStartInput.value;
@@ -74,7 +73,7 @@ const RoomInfo = () => {
                 });
         
                 if (hasConflict) {
-                    alert('Selected time conflicts with an existing reservation');
+                    alert(translations[language].roomInfo.alertCheck4);
                     return;
                 }
             }
@@ -82,7 +81,7 @@ const RoomInfo = () => {
             const reservation = { date: valueSelected, time_start: timeStart, time_end: timeEnd, user: "user_test" };
             buildingsInfo[buildingName].floors[currentIndex].rooms[roomIndex]['reservations'].push(reservation);
             
-            alert('Booked successfully for ' + valueSelected + ' from ' + timeStart + ' to ' + timeEnd);
+            alert(translations[language].roomInfo.alertSuccess);
         }
         else {
         console.log('Input elements not found');
@@ -226,7 +225,7 @@ const RoomInfo = () => {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <button className={'back-button'} onClick={() => functionBook()}>{translations[language].roomInfo.buttonBack}</button>
+                                        <button className={'back-button'} onClick={() => functionBook()}>{translations[language].roomInfo.buttonBook}</button>
                                     </div>
                                 </div>
                             </div>
