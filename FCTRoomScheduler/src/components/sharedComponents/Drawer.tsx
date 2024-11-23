@@ -7,11 +7,12 @@ type Drawer = {
     children: React.ReactNode;
 };
 
-const Drawer: React.FC<Drawer> = ({ isOpen, onClose }) => (
+const Drawer: React.FC<Drawer> = ({ isOpen, onClose, children }) => (
     <div className={`sliding-tab ${isOpen ? 'open' : ''}`}>
         <button className="sliding-tab-close-btn" onClick={onClose}>
             Close
         </button>
+        {children}
     </div>
 );
 

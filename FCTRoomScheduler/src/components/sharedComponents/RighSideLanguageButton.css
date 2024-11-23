@@ -1,7 +1,7 @@
-.right-side-floating-button {
+.right-side-language-button {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 95px;
+    right: 20px; 
     width: 65px;
     height: 65px;
     padding: 0;
@@ -13,11 +13,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
-}
-
-.floating-button-icon {
+    z-index: 999;
+  }
+  
+  .floating-button-icon {
     width: 32px;
     height: 32px;
-    z-index: 1000;
-}
+    z-index: 999;
+  }
+    

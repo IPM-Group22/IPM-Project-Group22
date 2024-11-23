@@ -1,8 +1,8 @@
-/* LeftSideFloatingButton.css */
-.left-side-floating-button {
+/* LeftSideSearchButton.css */
+.left-side-search-button {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 95px; /* Adjusted to be below the floating button */
+  left: 20px; /* Same left position as the floating button */
   width: 65px;
   height: 65px;
   padding: 0;
@@ -14,11 +14,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 999; /* Ensure it is below the floating button */
 }
 
 .floating-button-icon {
   width: 32px;
   height: 32px;
-  z-index: 1000;
+  z-index: 999;
 }
+  

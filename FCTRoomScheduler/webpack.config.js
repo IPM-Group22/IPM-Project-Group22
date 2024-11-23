@@ -36,6 +36,6 @@ module.exports = {
             }
         },
         port: 9000,
-        static: path.resolve(__dirname, 'dist')
+        static: path.resolve(__dirname, 'dist'),
     },
 };
