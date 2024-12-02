@@ -8,6 +8,8 @@ import 'react-calendar/dist/Calendar.css';
 import FloatingButton from '../sharedComponents/FloatingButton';
 import languageJSON from '../../storage/language.json';
 import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
+import { getUser, isLoggedIn } from "../../session/session.js";
+
 
 const language = "en";
 
@@ -260,26 +262,33 @@ const RoomInfo = () => {
                                             <p>{translations[language].roomInfo.noReservations}</p>
                                         )}
                                     </div>
-                                    <div className="details-container book-slot-container">
-                                        <h2>{translations[language].roomInfo.bookYourSlot}</h2>
-                                        <div className="book-slot">
-                                            <div className="book-slot-row">
-                                                <label>{translations[language].roomInfo.date}</label>
-                                                <span>{selectedDate}</span>
-                                            </div>
-                                            <div className="book-slot-row">
-                                                <label>{translations[language].roomInfo.timeStart}</label>
-                                                <input type="time" id="timeStart" name="timeStart" />
-                                            </div>
-                                            <div className="book-slot-row">
-                                                <label>{translations[language].roomInfo.timeEnd}</label>
-                                                <input type="time" id="timeEnd" name="timeEnd" />
-                                            </div>
-                                            <div className="book-button-container">
-                                                <button className="book-button" onClick={() => functionBook()}>{translations[language].roomInfo.buttonBook}</button>
+                                    {isLoggedIn() ? (
+                                        <div className="details-container book-slot-container">
+                                            <h2>{translations[language].roomInfo.bookYourSlot}</h2>
+                                            <div className="book-slot">
+                                                <div className="book-slot-row">
+                                                    <label>{translations[language].roomInfo.date}</label>
+                                                    <span>{selectedDate}</span>
+                                                </div>
+                                                <div className="book-slot-row">
+                                                    <label>{translations[language].roomInfo.timeStart}</label>
+                                                    <input type="time" id="timeStart" name="timeStart" />
+                                                </div>
+                                                <div className="book-slot-row">
+                                                    <label>{translations[language].roomInfo.timeEnd}</label>
+                                                    <input type="time" id="timeEnd" name="timeEnd" />
+                                                </div>
+                                                <div className="book-button-container">
+                                                    <button className="book-button" onClick={() => functionBook()}>{translations[language].roomInfo.buttonBook}</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    ) : (
+                                        <div className="details-container book-slot-container">
+                                            <h2>{translations[language].roomInfo.bookYourSlot}</h2>
+                                            <p>{translations[language].roomInfo.ifYouWantToBook}</p>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         );

@@ -14,7 +14,13 @@ import back from "../../../media/back.png";
 // @ts-ignore
 import filter from "../../../media/filter.png";
 // @ts-ignore
-import language from "../../../media/language.png";
+import languageIcon from "../../../media/language.png";
+
+
+import translations from '../../storage/translations.json';
+import languageJson from '../../storage/language.json';
+let language = languageJson['language'];
+let translation = translations[language].floatingButton;
 
 interface FloatingButtonProps {
     onClick: () => void;
@@ -37,38 +43,45 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({ onClick, type }) => {
 
     let className;
     let icon;
+    let title;
 
     switch (type) {
         case 'filters':
             className = 'left-side-floating-button';
             icon = filter;
+            title = translation.filters;
             break;
         case 'account':
             className = 'right-side-floating-button';
             icon = accountIcon;
+            title = translation.account;
             break;
         case 'back':
             className = 'left-side-floating-button';
             icon = back;
+            title = translation.back;
             break;
         case 'home':
             className = 'left-side-floating-button';
             icon = home;
+            title = translation.home;
             break;
         case 'search':
             className = 'left-side-search-button';
             icon = searchIcon;
+            title = translation.search;
             break;
         case 'language':
             className = 'right-side-language-button';
-            icon = language;
+            icon = languageIcon;
+            title = translation.language;
             break;
         default:
             return null;
     }
 
     return (
-        <button className={className} onClick={onClick}>
+        <button className={className} onClick={onClick} title={title}>
             <img src={icon} alt={`${type} icon`} className="floating-button-icon" />
         </button>
     );

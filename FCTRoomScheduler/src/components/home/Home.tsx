@@ -137,6 +137,8 @@ export default function Home() {
   const [roomLocation, setRoomLocation] = useState<LatLngTuple | null>(null); // Track room location
 
   const navigate = useNavigate();
+  const [language, setLanguage] = useState(languageJSON.language);
+  
 
   const handlePolygonClick = (name: string) => {
     navigate(`/building/${name}`);
@@ -231,8 +233,9 @@ export default function Home() {
       <FloatingButton onClick={toggleAccount} type={"account"} />
       <FloatingButton onClick={toggleSearch} type={"search"} />
       <FloatingButton onClick={() => {
-        const language = languageJSON.language;
+        console.log(languageJSON.language);
         languageJSON.language = language === "en" ? "pt" : "en";
+        console.log(languageJSON.language);
       }} type={"language"} />
 
       {searchClicked && (

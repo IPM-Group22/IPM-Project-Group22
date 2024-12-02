@@ -13,8 +13,6 @@ const Account = () => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const navigate = useNavigate();
     
-    console.log(getUser());
-
     const getUserReservations = (buildingsData, username) => { //Get all the reservations for a specific user
         const userReservations = [];
         const allUserReservations = [];
@@ -125,7 +123,28 @@ const Account = () => {
         }
     }
 
-    
+    const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+
+    const logoutHandler = () => {
+      setShowLogoutConfirm(true);
+    };
+
+    const confirmLogout = () => {
+      clearUserSession();
+      navigate('/');
+    };
+
+    const cancelLogout = () => {
+      setShowLogoutConfirm(false);
+    };
+
+    const LogoutConfirmationBox = () => (
+      <div className="logout-confirmation-box">
+        <p>{translation.logoutMessage}</p>
+        <button onClick={confirmLogout}>{translation.confirmLogout}</button>
+        <button onClick={cancelLogout}>{translation.cancelLogout}</button>
+      </div>
+    );
 
     return (
         <div className="account-container">
@@ -135,11 +154,12 @@ const Account = () => {
                     <li><button onClick={() => setSelectedOption(translation.aboutUser)}>{translation.aboutUser}</button></li>
                     <li><button onClick={() => setSelectedOption(translation.reservations)}>{translation.reservations}</button></li>
                     <li><button onClick={() => navigate('/')}>{translation.back}</button></li>
-                    <li><button onClick={() => {alert(translation.logoutMessage); navigate('/')}}>{translation.logout}</button></li>
+                    <li><button onClick={logoutHandler}>{translation.logout}</button></li>
                 </ul>
             </div>
             <div className="account-content">
-                {renderContent()}
+              {!showLogoutConfirm && renderContent()}
+              {showLogoutConfirm && <LogoutConfirmationBox />}
             </div>
         </div>
     );
