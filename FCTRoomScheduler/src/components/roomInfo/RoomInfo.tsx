@@ -132,9 +132,9 @@ const RoomInfo = () => {
                 return;
             }
 
-            const reservation = { date: selectedDate, time_start: timeStartInput.value, time_end: timeEndInput.value, user: "user_test" };
+            const reservation = { id: Math.floor(Math.random()*100), date: selectedDate, time_start: timeStartInput.value, time_end: timeEndInput.value, user: getUser().username };
             building.floors[currentIndex].rooms[roomIndex].reservations.push(reservation);
-
+            console.log('Reservation added', reservation);
             alert(translations[language].roomInfo.alertSuccess);
         }
     }

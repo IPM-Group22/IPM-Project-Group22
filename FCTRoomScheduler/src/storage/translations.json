@@ -47,7 +47,11 @@
       "date": "Date",
       "time": "Time",
       "confirmLogout": "Are you sure you want to logout?",
-      "cancelLogout": "Cancel"
+      "cancelLogout": "Cancel",
+      "logoutSuccess": "Logout successful",
+      "cancelReservation": "Cancel Reservation",
+      "confirmReservationCancel": "Are you sure you want to cancel the reservation?",
+      "reservationCancelled": "Reservation cancelled"
     },
     "loginAndRegister":{
       "usernameOrUsername": "Username or Email",
@@ -125,7 +129,11 @@
       "date": "Date",
       "time": "Time",
       "confirmLogout": "Tem a certeza que quer sair?",
-      "cancelLogout": "Cancelar"
+      "cancelLogout": "Cancelar",
+      "logoutSuccess": "Logout bem sucedido",
+      "cancelReservation": "Cancelar Reserva",
+      "confirmReservationCancel": "Tem a certeza que quer cancelar a reserva?",
+      "reservationCancelled": "Reserva cancelada"
     },
     "loginAndRegister":{
       "usernameOrUsername": "Username ou Email",
