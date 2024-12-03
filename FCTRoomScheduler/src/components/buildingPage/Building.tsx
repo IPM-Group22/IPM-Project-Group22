@@ -4,7 +4,8 @@ import buildingsInfo from '../../storage/buildingsInfo.json';
 import './Building.css';
 import FloatingButton from '../sharedComponents/FloatingButton';
 import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
-import languageJSON from '../../storage/language.json';
+import { getUserLanguage, setUserLanguage } from "../../session/session.js";
+import translations from '../../storage/translations.json';
 
 const Building = () => {
     const { buildingName } = useParams<{ buildingName: string }>();
@@ -17,6 +18,10 @@ const Building = () => {
         setIsAccountOpen(!isAccountOpen);
     };
 
+    const language = getUserLanguage();
+
+    
+
     if (!building) {
         return <div>Building not found</div>;
     }
@@ -25,9 +30,7 @@ const Building = () => {
         <div className="container">
             <FloatingButton onClick={() => navigate(-1)} type={"back"} />
             <FloatingButton onClick={toggleAccount} type={"account"} />
-            <FloatingButton onClick={() => {
-            const language = languageJSON.language;
-            languageJSON.language = language === "en" ? "pt" : "en";
+            <FloatingButton onClick={() => {setUserLanguage(); window.location.reload();
             }} type={"language"} />
             {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
             <h1 className="building-title">Building: {buildingName.toUpperCase()}</h1>

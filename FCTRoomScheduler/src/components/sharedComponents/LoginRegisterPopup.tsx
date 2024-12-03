@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./LoginRegisterPopup.css";
-import { login, setUserSession, clearUserSession, userExists } from "../../session/session.js";
+import { login, setUserSession, clearUserSession, userExists, getUserLanguage, setUserLanguage } from "../../session/session.js";
 import AccountPopup from "./AccountPopup";
 import translations from '../../storage/translations.json';
-import languageJson from '../../storage/language.json';
 
 
-let language = languageJson['language'];
+let language = getUserLanguage();
 let translation = translations[language].loginAndRegister;
 let translationAccount = translations[language].account;
 

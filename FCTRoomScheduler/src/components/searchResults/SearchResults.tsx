@@ -4,7 +4,8 @@ import buildingsInfo from '../../storage/buildingsInfo.json';
 import './SearchResults.css';
 import FloatingButton from '../sharedComponents/FloatingButton';
 import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
-import languageJSON from '../../storage/language.json';
+import { getUserLanguage, setUserLanguage } from "../../session/session.js";
+
 
 const typeOptions = [
     "building",
@@ -89,9 +90,7 @@ const SearchResults = () => {
         <>
             <FloatingButton onClick={() => navigate('/')} type="home" />
             <FloatingButton onClick={toggleAccount} type="account" />
-            <FloatingButton onClick={() => {
-            const language = languageJSON.language;
-            languageJSON.language = language === "en" ? "pt" : "en";
+            <FloatingButton onClick={() => {setUserLanguage(); window.location.reload();
             }} type={"language"} />
             {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
             <div className={"header"}>

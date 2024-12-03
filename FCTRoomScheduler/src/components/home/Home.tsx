@@ -9,7 +9,8 @@ import Filters from '../sharedComponents/Filters';
 import { useNavigate } from 'react-router-dom';
 import FloatingButton from '../sharedComponents/FloatingButton';
 import L from 'leaflet';
-import languageJSON from '../../storage/language.json';
+import { getUserLanguage, setUserLanguage } from "../../session/session.js";
+import translations from '../../storage/translations.json';
 
 const center: LatLngTuple = [38.66149464690209, -9.205871106395124];
 
@@ -137,7 +138,7 @@ export default function Home() {
   const [roomLocation, setRoomLocation] = useState<LatLngTuple | null>(null); // Track room location
 
   const navigate = useNavigate();
-  const [language, setLanguage] = useState(languageJSON.language);
+  const [language, setLanguage] = useState(getUserLanguage());
   
 
   const handlePolygonClick = (name: string) => {
@@ -228,14 +229,10 @@ export default function Home() {
 {roomLocation && <Marker position={roomLocation} icon={teardropIcon}></Marker>}
 
       </MapContainer>
-
       <FloatingButton onClick={toggleTab} type={"filters"} />
       <FloatingButton onClick={toggleAccount} type={"account"} />
       <FloatingButton onClick={toggleSearch} type={"search"} />
-      <FloatingButton onClick={() => {
-        console.log(languageJSON.language);
-        languageJSON.language = language === "en" ? "pt" : "en";
-        console.log(languageJSON.language);
+      <FloatingButton onClick={() => {setUserLanguage(); window.location.reload();
       }} type={"language"} />
 
       {searchClicked && (

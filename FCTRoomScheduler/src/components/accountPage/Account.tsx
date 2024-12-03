@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import './Account.css';
-import { getUserToken, getUser, isLoggedIn, clearUserSession } from "../../session/session.js";
+import { getUserToken, getUser, isLoggedIn, clearUserSession, getUserLanguage, setUserLanguage } from "../../session/session.js";
 import { useNavigate } from "react-router-dom";
 import buildingsInfo from '../../storage/buildingsInfo.json';
-
 import translations from '../../storage/translations.json';
-import languageJson from '../../storage/language.json';
-let language = languageJson['language'];
+
+
+
+let language = getUserLanguage();
 let translation = translations[language].account;
 
 const Account = () => {

@@ -6,12 +6,10 @@ import './RoomInfo.css';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import FloatingButton from '../sharedComponents/FloatingButton';
-import languageJSON from '../../storage/language.json';
 import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
-import { getUser, isLoggedIn } from "../../session/session.js";
+import { getUser, isLoggedIn, getUserLanguage, setUserLanguage } from "../../session/session.js";
 
-
-const language = "en";
+const language = getUserLanguage();
 
 let roomIndex: number = 0;
 
@@ -304,9 +302,7 @@ const RoomInfo = () => {
         <>
         <FloatingButton onClick={() => navigate(-1)} type={"back"} />
         <FloatingButton onClick={toggleAccount} type={"account"} />
-        <FloatingButton onClick={() => {
-        const language = languageJSON.language;
-        languageJSON.language = language === "en" ? "pt" : "en";
+        <FloatingButton onClick={() => {setUserLanguage(); window.location.reload();
         }} type={"language"} />
         {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
         <div className={"centered-container"}><h1>{translations[language].roomInfo.building} {buildingName.toUpperCase()} {translations[language].roomInfo.room} {roomName}</h1></div>

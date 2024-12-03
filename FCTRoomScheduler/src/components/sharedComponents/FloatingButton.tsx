@@ -16,10 +16,10 @@ import filter from "../../../media/filter.png";
 // @ts-ignore
 import languageIcon from "../../../media/language.png";
 
+import { getUserLanguage, setUserLanguage } from "../../session/session.js";
 
 import translations from '../../storage/translations.json';
-import languageJson from '../../storage/language.json';
-let language = languageJson['language'];
+let language = getUserLanguage();
 let translation = translations[language].floatingButton;
 
 interface FloatingButtonProps {

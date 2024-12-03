@@ -4,7 +4,7 @@ import './FilterResults.css';
 import { useNavigate } from 'react-router-dom';
 import FloatingButton from './FloatingButton';
 import LoginRegisterPopup from './LoginRegisterPopup';
-import languageJSON from '../../storage/language.json';
+import { getUserLanguage, setUserLanguage } from "../../session/session.js";
 
 interface FilterResultsProps {
     filterParams: {
@@ -62,9 +62,7 @@ const FilterResults: React.FC<FilterResultsProps> = ({ filterParams }) => {
         <>
             <FloatingButton onClick={() => navigate('/')} type="home" />
             <FloatingButton onClick={toggleAccount} type="account" />
-            <FloatingButton onClick={() => {
-            const language = languageJSON.language;
-            languageJSON.language = language === "en" ? "pt" : "en";
+            <FloatingButton onClick={() => {setUserLanguage(); window.location.reload();
             }} type={"language"} />
             {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
 
