@@ -10,6 +10,7 @@ import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
 import { getUser, isLoggedIn, getUserLanguage, setUserLanguage } from "../../session/session.js";
 
 const language = getUserLanguage();
+let translationHelp = translations[language].needHelp;
 
 let roomIndex: number = 0;
 
@@ -338,6 +339,22 @@ const RoomInfo = () => {
             <div>
 
             </div>
+            {/* "Need Help?" Link */}
+      <div
+        className="help-link"
+        style={{
+          position: 'absolute',
+          bottom: '25px',
+          right: '10px',
+          cursor: 'pointer',
+          color: 'white',
+          textDecoration: 'underline',
+          zIndex: 1000,
+        }}
+        onClick={() => navigate('/help')}
+      >
+        {translationHelp.needHelp}
+      </div>
         </div>
         </>
     );

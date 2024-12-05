@@ -19,11 +19,13 @@ const Building = () => {
     };
 
     const language = getUserLanguage();
+    let translation = translations[language].building;
+    let translationHelp = translations[language].needHelp;
 
     
 
     if (!building) {
-        return <div>Building not found</div>;
+        return <div>{translation.buildingNotFound}</div>;
     }
 
     return (
@@ -33,9 +35,9 @@ const Building = () => {
             <FloatingButton onClick={() => {setUserLanguage(); window.location.reload();
             }} type={"language"} />
             {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
-            <h1 className="building-title">Building: {buildingName.toUpperCase()}</h1>
-            <img className="building-image" src={building.image} alt={`Building ${buildingName} Image Not Found`} />
-            <p className='building-info'>Number of Floors: {building.numberOfFloors}</p>
+            <h1 className="building-title">{translation.building}: {buildingName.toUpperCase()}</h1>
+            <img className="building-image" src={building.image} alt={`${translation.building} ${buildingName} ${translation.imageNotFound}`} />
+            <p className='building-info'>{translation.numberOfFloors}: {building.numberOfFloors}</p>
 
             {/* Horizontal List for Floors */}
             <div className="floor-selector">
@@ -45,7 +47,7 @@ const Building = () => {
                         className={selectedFloor === index ? 'selected' : ''}
                         onClick={() => setSelectedFloor(index)}
                     >
-                        Floor {index + 1}
+                        {translation.floor} {index + 1}
                     </button>
                 ))}
             </div>
@@ -63,6 +65,22 @@ const Building = () => {
                     </div>
                 ))}
             </div>
+            {/* "Need Help?" Link */}
+      <div
+        className="help-link"
+        style={{
+          position: 'absolute',
+          bottom: '25px',
+          right: '10px',
+          cursor: 'pointer',
+          color: 'white',
+          textDecoration: 'underline',
+          zIndex: 1000,
+        }}
+        onClick={() => navigate('/help')}
+      >
+        {translationHelp.needHelp}
+      </div>
         </div>
     );
 }

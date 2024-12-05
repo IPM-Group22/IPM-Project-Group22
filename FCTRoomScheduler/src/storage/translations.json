@@ -77,6 +77,17 @@
       "home": "Home",
       "search": "Search",
       "language": "Language"
+    },
+    "needHelp":{
+      "needHelp": "Need help?"
+    },
+    "building": {
+      "building": "Building",
+      "room": "Room",
+      "buildingNotFound": "Building not found",
+      "imageNotFound": "Image not found",
+      "numberOfFloors": "Number of Floors",
+      "floor": "Floor"
     }
   },
 
@@ -159,6 +170,17 @@
       "home": "Home",
       "search": "Pesquisar",
       "language": "Língua"
+    },
+    "needHelp":{
+      "needHelp": "Precisas de ajuda?"
+    },
+    "building": {
+      "building": "Edificio",
+      "room": "Sala",
+      "buildingNotFound": "Edificio não encontrado",
+      "imageNotFound": "Imagem não encontrada",
+      "numberOfFloors": "Número de Pisos",
+      "floor": "Piso"
     }
   }
 }

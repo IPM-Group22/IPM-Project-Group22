@@ -4,11 +4,13 @@ import { getUserToken, getUser, isLoggedIn, clearUserSession, getUserLanguage, s
 import { useNavigate } from "react-router-dom";
 import buildingsInfo from '../../storage/buildingsInfo.json';
 import translations from '../../storage/translations.json';
-
+import FloatingButton from "../sharedComponents/FloatingButton";
 
 
 let language = getUserLanguage();
 let translation = translations[language].account;
+let translationHelp = translations[language].needHelp;
+
 
 const Account = () => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -183,12 +185,12 @@ const Account = () => {
 
     return (
         <div className="account-container">
+          <FloatingButton onClick={() => navigate(-1)} type={"back"} />
             <div className="account-sidebar">
                 <h1>{translation.accountPage}</h1>
                 <ul>
                     <li><button onClick={() => setSelectedOption(translation.aboutUser)}>{translation.aboutUser}</button></li>
                     <li><button onClick={() => setSelectedOption(translation.reservations)}>{translation.reservations}</button></li>
-                    <li><button onClick={() => navigate('/')}>{translation.back}</button></li>
                     <li><button onClick={logoutHandler}>{translation.logout}</button></li>
                 </ul>
             </div>
@@ -196,6 +198,22 @@ const Account = () => {
               {!showLogoutConfirm && renderContent()}
               {showLogoutConfirm && <LogoutConfirmationBox />}
             </div>
+            <div
+        className="help-link"
+        style={{
+          position: 'absolute',
+          bottom: '25px',
+          right: '10px',
+          cursor: 'pointer',
+          color: 'white',
+          textDecoration: 'underline',
+          zIndex: 1000,
+        }}
+        onClick={() => navigate('/help')}
+      >
+        {translationHelp.needHelp}
+      </div>
+
         </div>
     );
 }

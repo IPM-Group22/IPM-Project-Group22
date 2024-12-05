@@ -139,7 +139,8 @@ export default function Home() {
 
   const navigate = useNavigate();
   const [language, setLanguage] = useState(getUserLanguage());
-  
+  let translation = translations[language].home;
+  let translationHelp = translations[language].needHelp;
 
   const handlePolygonClick = (name: string) => {
     navigate(`/building/${name}`);
@@ -156,8 +157,11 @@ export default function Home() {
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
     setSearchClicked((prevState) => !prevState); // Toggle the indicator state
- 
-  };
+  
+    // Clear the previous room indication
+    setSelectedRoom(null);
+    setRoomLocation(null);
+  }; 
 
   const handleBuildingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedBuilding(event.target.value);
@@ -301,6 +305,22 @@ export default function Home() {
 
       <div className="map-header">
         <h1>NOVA FCT ROOM SCHEDULER</h1>
+      </div>
+      {/* "Need Help?" Link */}
+      <div
+        className="help-link"
+        style={{
+          position: 'absolute',
+          bottom: '25px',
+          right: '10px',
+          cursor: 'pointer',
+          color: 'blue',
+          textDecoration: 'underline',
+          zIndex: 1000,
+        }}
+        onClick={() => navigate('/help')}
+      >
+        {translationHelp.needHelp}
       </div>
     </div>
   );
