@@ -27,7 +27,11 @@
     },
     "home": {
       "building": "Building",
-      "room": "Room"
+      "room": "Room",
+      "selectBuildingAndRoom": "Select Building and Room",
+      "selectABuilding": "Select a Building",
+      "selectARoom": "Select a Room",
+      "selected": "Selected"
     },
     "account":{
       "selectOptionFromTheSidebar": "Select an option from the sidebar",
@@ -88,6 +92,25 @@
       "imageNotFound": "Image not found",
       "numberOfFloors": "Number of Floors",
       "floor": "Floor"
+    },
+    "floatingButtonAccount": {
+      "welcome": "Welcome",
+      "myAccount": "My Account"
+    },
+    "filters": {
+      "filters": "Filters",
+      "building": "Building",
+      "room": "Room",
+      "materials": "Materials",
+      "roomCapacity": "Room Capacity",
+      "quality": "Quality",
+      "qualities": "Qualities",
+      "selectAnOption": "Select an option",
+      "roomTypes": "Room Types",
+      "size": "Size",
+      "search": "Search",
+      "reset": "Reset",
+      "enterCapacity": "Enter the room capacity"
     }
   },
 
@@ -119,8 +142,12 @@
       "ifYouWantToBook": "Se quiser reservar esta sala, por favor faça login"
     },
     "home": {
-      "building": "Building",
-      "room": "Room"
+      "building": "Edificio",
+      "room": "Sala",
+      "selectBuildingAndRoom": "Seleciona Edificio e Sala",
+      "selectABuilding": "Seleciona um Edificio",
+      "selectARoom": "Seleciona uma Sala",
+      "selected": "Selecionado"
     },
     "account":{
       "selectOptionFromTheSidebar": "Selecione uma opção na barra lateral",
@@ -181,6 +208,25 @@
       "imageNotFound": "Imagem não encontrada",
       "numberOfFloors": "Número de Pisos",
       "floor": "Piso"
+    },
+    "floatingButtonAccount": {
+      "welcome": "Bem vindo",
+      "myAccount": "A minha conta"
+    },
+    "filters": {
+      "filters": "Filtros",
+      "building": "Edificio",
+      "room": "Sala",
+      "materials": "Materiais",
+      "roomCapacity": "Capacidade da Sala",
+      "quality": "Qualidade",
+      "qualities": "Qualidades",
+      "selectAnOption": "Seleciona uma opção",
+      "roomTypes": "Tipos de Sala",
+      "size": "Tamanho",
+      "search": "Pesquisar",
+      "reset": "Reiniciar",
+      "enterCapacity": "Insira a capacidade da sala"
     }
   }
 }

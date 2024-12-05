@@ -271,11 +271,11 @@ const RoomInfo = () => {
                                                 </div>
                                                 <div className="book-slot-row">
                                                     <label>{translations[language].roomInfo.timeStart}</label>
-                                                    <input type="time" id="timeStart" name="timeStart" />
+                                                    <input type="time" id="timeStart" name="timeStart" placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" />
                                                 </div>
                                                 <div className="book-slot-row">
                                                     <label>{translations[language].roomInfo.timeEnd}</label>
-                                                    <input type="time" id="timeEnd" name="timeEnd" />
+                                                    <input type="time" id="timeEnd" name="timeEnd" placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" />
                                                 </div>
                                                 <div className="book-button-container">
                                                     <button className="book-button" onClick={() => functionBook()}>{translations[language].roomInfo.buttonBook}</button>

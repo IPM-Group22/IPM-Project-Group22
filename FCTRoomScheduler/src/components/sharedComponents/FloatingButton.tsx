@@ -8,6 +8,8 @@ import searchIcon from "../../../media/searchIcon.png";
 // @ts-ignore
 import accountIcon from "../../../media/user.png";
 // @ts-ignore
+import iconOverride from "../../../media/iconOverride.png";
+// @ts-ignore
 import home from "../../../media/home.png";
 // @ts-ignore
 import back from "../../../media/back.png";
@@ -16,7 +18,7 @@ import filter from "../../../media/filter.png";
 // @ts-ignore
 import languageIcon from "../../../media/language.png";
 
-import { getUserLanguage, setUserLanguage } from "../../session/session.js";
+import { getUserLanguage, setUserLanguage, clearUserSession, isLoggedIn, getUser } from "../../session/session.js";
 
 import translations from '../../storage/translations.json';
 let language = getUserLanguage();
@@ -25,6 +27,8 @@ let translation = translations[language].floatingButton;
 interface FloatingButtonProps {
     onClick: () => void;
     type: string;
+
+    iconOverride?: string;
 }
 
 const floatingButtonTypes = [
@@ -52,8 +56,16 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({ onClick, type }) => {
             title = translation.filters;
             break;
         case 'account':
+            if(isLoggedIn()){
+
+                icon = iconOverride
+
+            }else{
+
+                icon = accountIcon
+
+            }
             className = 'right-side-floating-button';
-            icon = accountIcon;
             title = translation.account;
             break;
         case 'back':

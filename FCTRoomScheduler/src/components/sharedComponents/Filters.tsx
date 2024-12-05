@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import CustomDropdown from './CustomDropdown';
 import filters from '../../storage/filtersInfo.json';
 import './Filters.css';
+import { getUserLanguage } from "../../session/session.js";
+import translations from '../../storage/translations.json';
+
+let language = getUserLanguage();
+let translation = translations[language].filters;
 
 interface FilterParams {
     roomCapacity: string;
@@ -35,21 +40,21 @@ const Filters = () => {
 
     return (
         <div className="filters-container">
-            <h2>Filters</h2>
+            <h2>{translation.filters}</h2>
 
             {/* Room Capacity Input */}
-            <label htmlFor="room-capacity">Room Capacity:</label>
+            <label htmlFor="room-capacity">{translation.roomCapacity}:</label>
             <input
                 id="room-capacity"
                 type="number"
                 value={roomCapacity}
                 onChange={(e) => setRoomCapacity(e.target.value)}
-                placeholder="Enter capacity"
+                placeholder={translation.enterCapacity}
                 min="1" // Optional: Minimum value
             />
 
             {/* Materials Dropdown */}
-            <label htmlFor="filter6-select">Materials:</label>
+            <label htmlFor="filter6-select">{translation.materials}:</label>
             <CustomDropdown
                 options={filters.materials}
                 selectedOptions={selectedMaterials}
@@ -57,9 +62,9 @@ const Filters = () => {
             />
 
             {/* Room Type Dropdown */}
-            <label htmlFor="filter5-select">Room Types:</label>
+            <label htmlFor="filter5-select">{translation.roomTypes}:</label>
             <select id="filter5-select" value={selectedFilter5} onChange={handleFilter5Change}>
-                <option value="">Select an option</option>
+                <option value="">{translation.selectAnOption}</option>
                 {filters.roomType.map((roomType, index) => (
                     <option key={index} value={roomType}>
                         {roomType}
@@ -68,14 +73,14 @@ const Filters = () => {
             </select>
 
             {/* Qualities Dropdown */}
-            <label htmlFor="filter4-select">Qualities:</label>
+            <label htmlFor="filter4-select">{translation.qualities}:</label>
             <CustomDropdown
                 options={filters.qualities}
                 selectedOptions={selectedFilter4}
                 onChange={setSelectedFilter4}
             />
 
-            <button id="searchButton" onClick={handleSearch}>Search</button>
+            <button id="searchButton" onClick={handleSearch}>{translation.search}</button>
         </div>
     );
 };

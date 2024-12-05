@@ -241,17 +241,17 @@ export default function Home() {
 
       {searchClicked && (
         <div className="search-indicator">
-          <h3>Select Building and Room</h3>
+          <h3>{translation.selectBuildingAndRoom}</h3>
 
           {/* Building Dropdown */}
-          <label htmlFor="building-select">Building:</label>
+          <label htmlFor="building-select">{translation.building}:</label>
           <select
             id="building-select"
             value={selectedBuilding || ''}
             onChange={handleBuildingChange}
           >
             <option value="" disabled>
-              Select a building
+            {translation.selectABuilding}
             </option>
             {buildings.map((building) => (
               <option key={building.id} value={building.id}>
@@ -263,14 +263,14 @@ export default function Home() {
           {/* Room Dropdown */}
           {selectedBuilding && (
             <>
-              <label htmlFor="room-select">Room:</label>
+              <label htmlFor="room-select">{translation.room}:</label>
               <select
                 id="room-select"
                 value={selectedRoom || ''}
                 onChange={handleRoomChange}
               >
                 <option value="" disabled>
-                  Select a room
+                  {translation.selectARoom}
                 </option>
                 {buildings
                   .find((building) => building.id === selectedBuilding)
@@ -286,7 +286,7 @@ export default function Home() {
           {/* Display Selected Room */}
           {selectedRoom && (
             <p>
-              Selected: {selectedBuilding} - {selectedRoom}
+              {translation.selected}: {selectedBuilding} - {selectedRoom}
             </p>
           )}
         </div>
