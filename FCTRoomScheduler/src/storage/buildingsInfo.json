@@ -38,6 +38,7 @@
             "qualities": ["Air conditioning", "Natural light"],
             "reservations": [
               {
+                "id": 1,
                 "date": "2024-11-19",
                 "time_start": "09:00",
                 "time_end": "11:00",
@@ -45,13 +46,15 @@
                 "description": "This is a test reservation"
               },
               {
-                "date": "2024-11-19",
+                "id": 2,
+                "date": "2024-12-19",
                 "time_start": "14:00",
                 "time_end": "16:00",
                 "user": "admin",
                 "description": "This is a test reservation"
               },
-              {
+              { 
+                "id": 3,
                 "date": "2024-11-18",
                 "time_start": "14:00",
                 "time_end": "16:00",
@@ -62,80 +65,6 @@
           },
           {
             "name": "128",
-            "size": "100",
-            "description": "",
-            "type": ["classroom", "auditorium"],
-            "photos": [
-              "https://images.unsplash.com/photo-1611078481295-536d46b3c51d",
-              "https://images.unsplash.com/photo-1519985176271-adb1088fa94c"
-            ],
-            "materials": [
-              {
-                "name": "Chairs",
-                "number": 75,
-                "description": "This room has chairs"
-              },
-              {
-                "name": "Tables",
-                "number": 7,
-                "description": "This room has tables"
-              },
-              {
-                "name": "Web Cam",
-                "number": 2,
-                "description": "This room has web cams"
-              },
-              {
-                "name": "Projector",
-                "number": 1,
-                "description": "This room has a projector"
-              }
-            ],
-            "qualities": ["Air conditioning", "Natural light", "Internet Access"],
-            "reservations": []
-          }
-        ]
-      },
-      {
-        "floor": 2,
-        "floorImage": "building_ii_floor_2.png",
-        "rooms": [
-          {
-            "name": "227",
-            "size": "75",
-            "description": "",
-            "type": ["classroom", "auditorium"],
-            "photos": [
-              "https://images.unsplash.com/photo-1611078481295-536d46b3c51d",
-              "https://images.unsplash.com/photo-1519985176271-adb1088fa94c"
-            ],
-            "materials": [
-              {
-                "name": "Chairs",
-                "number": 75,
-                "description": "This room has chairs"
-              },
-              {
-                "name": "Tables",
-                "number": 7,
-                "description": "This room has tables"
-              },
-              {
-                "name": "Web Cam",
-                "number": 2,
-                "description": "This room has web cams"
-              },
-              {
-                "name": "Projector",
-                "number": 1,
-                "description": "This room has a projector"
-              }
-            ],
-            "qualities": ["Air conditioning", "Natural light", "Internet Access"],
-            "reservations": []
-          },
-          {
-            "name": "228",
             "size": "100",
             "description": "",
             "type": ["classroom", "auditorium"],

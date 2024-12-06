@@ -7,7 +7,7 @@ const AccountPopup = ({ onLoginRegister, onLogout, onMyAccount }) => {
         <div className="account-popup">
             {isLoggedIn() ? (
                 <>
-                    <p>Welcome, {getUser().username}</p>
+                    <p>Hello {getUser().username}</p>
                     <div className="button-container">
                         <button onClick={onMyAccount}>My Account</button>
                         <button className="logout-button" onClick={onLogout}>Logout</button>

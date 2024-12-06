@@ -29,7 +29,7 @@ const FilterResults: React.FC = () => {
 
         const floorMatches = building.floors.reduce((floorResults, floor) => {
             const roomMatches = floor.rooms.filter(room => {
-                const matchesCapacity = roomCapacity ? room.capacity >= parseInt(roomCapacity) : true;
+                const matchesCapacity = roomCapacity ? room.size >= parseInt(roomCapacity) : true;
 
                 const matchesMaterials = Array.isArray(selectedMaterials) && selectedMaterials.length > 0 ? 
                     selectedMaterials.every(material => room.materials.find(m => m.name == material)) : true;
@@ -94,7 +94,7 @@ const FilterResults: React.FC = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No results found</p>
+                    <div className="no-results">No results found</div>
                 )}
             </div>
         </>

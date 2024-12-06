@@ -80,3 +80,9 @@
     cursor: pointer;
     font-size: 20px;
 }
+
+.no-results {
+    font-size: 20px;
+    color: red;
+    margin-top: 20px;
+}

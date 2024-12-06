@@ -164,3 +164,57 @@ margin-bottom: 20px;
 .reservationsContent p {
 font-size: 20px;
 }
+
+
+.logout-confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logout-confirmation-box {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+}
+
+.logout-confirmation-box p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.logout-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.logout-confirmation-box button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.logout-confirmation-box button:first-of-type {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.logout-confirmation-box button:last-of-type {
+  background-color: #e74c3c;
+  color: #fff;
+}

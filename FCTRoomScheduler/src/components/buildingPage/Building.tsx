@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import buildingsInfo from '../../storage/buildingsInfo.json';
 import './Building.css';
 import FloatingButton from '../sharedComponents/FloatingButton';
 import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
-import languageJSON from '../../storage/language.json';
+import { getUserLanguage, setUserLanguage } from "../../session/session.js";
+import translations from '../../storage/translations.json';
+import HelpFooter from '../sharedComponents/helpFooter';
 
 const Building = () => {
     const { buildingName } = useParams<{ buildingName: string }>();
@@ -12,10 +14,25 @@ const Building = () => {
     const building = buildingsInfo[buildingName];
     const [selectedFloor, setSelectedFloor] = useState(0);
     const [isAccountOpen, setIsAccountOpen] = useState(false);
+    const [language, setLanguage] = useState(getUserLanguage());
 
     const toggleAccount = () => {
         setIsAccountOpen(!isAccountOpen);
     };
+
+    useEffect(() => {
+        if (!language) {
+            setUserLanguage();
+            setLanguage(getUserLanguage());
+        }
+    }, [language]);
+    
+    const handleLanguageChange = () => {
+        setUserLanguage();
+        setLanguage(getUserLanguage());
+    };
+
+    let translation = translations[language]?.building;
 
     if (!building) {
         return <div>Building not found</div>;
@@ -25,14 +42,11 @@ const Building = () => {
         <div className="container">
             <FloatingButton onClick={() => navigate(-1)} type={"back"} />
             <FloatingButton onClick={toggleAccount} type={"account"} />
-            <FloatingButton onClick={() => {
-            const language = languageJSON.language;
-            languageJSON.language = language === "en" ? "pt" : "en";
-            }} type={"language"} />
+            <FloatingButton onClick={handleLanguageChange} type={"language"} />
             {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
-            <h1 className="building-title">Building: {buildingName.toUpperCase()}</h1>
-            <img className="building-image" src={building.image} alt={`Building ${buildingName} Image Not Found`} />
-            <p className='building-info'>Number of Floors: {building.numberOfFloors}</p>
+            <h1 className="building-title">{translation?.building}: {buildingName.toUpperCase()}</h1>
+            <img className="building-image" src={building.image} alt={`${translation?.building} ${buildingName} ${translation?.imageNotFound}`} />
+            <p className='building-info'>{translation?.numberOfFloors}: {building.numberOfFloors}</p>
 
             {/* Horizontal List for Floors */}
             <div className="floor-selector">
@@ -42,7 +56,7 @@ const Building = () => {
                         className={selectedFloor === index ? 'selected' : ''}
                         onClick={() => setSelectedFloor(index)}
                     >
-                        Floor {index + 1}
+                        {translation?.floor} {index + 1}
                     </button>
                 ))}
             </div>
@@ -60,6 +74,8 @@ const Building = () => {
                     </div>
                 ))}
             </div>
+
+            <HelpFooter />
         </div>
     );
 }

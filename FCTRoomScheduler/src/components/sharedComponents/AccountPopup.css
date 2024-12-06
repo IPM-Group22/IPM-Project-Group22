@@ -40,3 +40,7 @@
 .account-popup .logout-button:hover {
     background-color: #c82333; /* Darker red on hover */
 }
+
+.account-popup p {
+    color: black;
+}

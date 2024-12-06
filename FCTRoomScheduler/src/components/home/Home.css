@@ -47,8 +47,8 @@ body, html {
 
 .search-indicator {
   position: absolute;
-  top: 150px;
-  right: 1100px;
+  top: 28%;
+  right: 70%;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 15px;

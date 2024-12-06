@@ -98,7 +98,7 @@
 .toggle-password {
     background-color: transparent; /* Transparent background */
     border: none; /* Remove border */
-    color: #007bff; /* Highlighted text color */
+    color: #292929; /* Highlighted text color */
     font-size: 0.9rem; /* Slightly smaller text */
     cursor: pointer; /* Pointer cursor on hover */
     padding: 0; /* No padding for compact look */
@@ -107,7 +107,8 @@
   
 /* Hover effect */
 .toggle-password:hover {
-    color: #0056b3; /* Darker blue for hover */
+    color: #0e7e1d; /* Darker blue for hover */
+    text-decoration: underline;
 }
 
 
