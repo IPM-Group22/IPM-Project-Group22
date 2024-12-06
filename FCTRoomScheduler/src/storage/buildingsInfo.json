@@ -5,7 +5,7 @@
     "floors": [
       {
         "floor": 1,
-        "floorImage": "building_ii_floor_1.png",
+        "floorImage": "https://fastly.picsum.photos/id/1033/2048/1365.jpg?hmac=zEuPfX7t6U866nzXjWF41bf-uxkKOnf1dDrHXmhcK-Q",
         "rooms": [
           {
             "name": "127",
@@ -66,7 +66,81 @@
           {
             "name": "128",
             "size": "100",
-            "description": "",
+            "description": "This is a room with tables and chairs",
+            "type": ["classroom", "auditorium"],
+            "photos": [
+              "https://images.unsplash.com/photo-1611078481295-536d46b3c51d",
+              "https://images.unsplash.com/photo-1519985176271-adb1088fa94c"
+            ],
+            "materials": [
+              {
+                "name": "Chairs",
+                "number": 75,
+                "description": "This room has chairs"
+              },
+              {
+                "name": "Tables",
+                "number": 7,
+                "description": "This room has tables"
+              },
+              {
+                "name": "Web Cam",
+                "number": 2,
+                "description": "This room has web cams"
+              },
+              {
+                "name": "Projector",
+                "number": 1,
+                "description": "This room has a projector"
+              }
+            ],
+            "qualities": ["Air conditioning", "Natural light", "Internet Access"],
+            "reservations": []
+          }
+        ]
+      },
+      {
+        "floor": 2,
+        "floorImage": "https://fastly.picsum.photos/id/939/5000/3333.jpg?hmac=aMeoSueBHlw2IZR_O0qtIofBghb24WwzSKZbOGhBq6A",
+        "rooms": [
+          {
+            "name": "227",
+            "size": "75",
+            "description": "Very nice room",
+            "type": ["classroom", "auditorium"],
+            "photos": [
+              "https://images.unsplash.com/photo-1611078481295-536d46b3c51d",
+              "https://images.unsplash.com/photo-1519985176271-adb1088fa94c"
+            ],
+            "materials": [
+              {
+                "name": "Chairs",
+                "number": 75,
+                "description": "This room has chairs"
+              },
+              {
+                "name": "Tables",
+                "number": 7,
+                "description": "This room has tables"
+              },
+              {
+                "name": "Web Cam",
+                "number": 2,
+                "description": "This room has web cams"
+              },
+              {
+                "name": "Projector",
+                "number": 1,
+                "description": "This room has a projector"
+              }
+            ],
+            "qualities": ["Air conditioning", "Natural light", "Internet Access"],
+            "reservations": []
+          },
+          {
+            "name": "228",
+            "size": "100",
+            "description": "Great room",
             "type": ["classroom", "auditorium"],
             "photos": [
               "https://images.unsplash.com/photo-1611078481295-536d46b3c51d",
@@ -107,7 +181,7 @@
     "floors": [
       {
         "floor": 0,
-        "floorImage": "building_vii_floor_0.png",
+        "floorImage": "https://fastly.picsum.photos/id/948/1942/2913.jpg?hmac=GmUwJ0vLFUjWKXE-5gGVclI5XlOnQMolawnNvROh_rc",
         "rooms": [
           {
             "name": "1C",
@@ -149,7 +223,7 @@
     "floors": [
       {
         "floor": 1,
-        "floorImage": "building_departamental_floor_1.png",
+        "floorImage": "https://fastly.picsum.photos/id/193/3578/2451.jpg?hmac=M5yoazhwdwMa_27rC5-S50SNFvCy4Kni0wXoa6iVF0g",
         "rooms": [
           {
             "name": "Lab60",
