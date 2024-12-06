@@ -24,9 +24,9 @@
 
 .building-title {
     text-align: center;
+    padding-top: 10px;
     margin-bottom: 20px;
-    font-size: 42px;
-    font-family: 'Georgia', serif;
+    font-size: 30px;
 }
 
 .building-image {

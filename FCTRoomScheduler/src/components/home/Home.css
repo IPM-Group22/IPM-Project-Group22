@@ -46,9 +46,10 @@ body, html {
 }
 
 .search-indicator {
+  width: 12%;
   position: absolute;
-  top: 28%;
-  right: 70%;
+  top: 24%;
+  right: 68%;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 15px;
@@ -82,4 +83,65 @@ body, html {
 
 .login-register-popup {
   z-index: 1100;
+}
+
+.quickSearchInput {
+  width: 85%; /* Maximum width */
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: black;
+  background-color: white; /* Ensure the background is white */
+  border: 1px solid #ccc; /* Add a border */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+  -moz-appearance: none; /* Remove default styling in Firefox */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,5" fill="black"/></svg>'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+}
+
+.quickSearchInput:focus {
+  outline: none; /* Remove default outline */
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a blue shadow on focus */
+}
+
+.quickSearchInput option {
+  color: black; /* Ensure the text color is black */
+  background-color: white; /* Ensure the background is white */
+  padding: 10px; /* Add padding to options */
+}
+
+.quickSearchInput option:disabled {
+  color: #999; /* Grey out disabled options */
+}
+
+.quickSearchLabel {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #ffffff; /* Darker color for better readability */
+}
+
+.quickSearchP{
+  display: block;
+  margin-top: 3px;
+  margin-bottom: 11px;
+  font-size: 17px;
+  color: #0eb839;
+}
+
+.quickSearchButton {
+  padding: 10px;
+  font-size: 14px;
+  margin-left: 3px;
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text color */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Add pointer cursor */
 }

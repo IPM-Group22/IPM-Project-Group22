@@ -23,7 +23,7 @@
       "alertSuccess": "The room was successfully booked for the selected time",
       "buttonBook": "Book",
       "noReservations": "No reservations for the selected date",
-      "ifYouWantToBook": "If you want to book this room, please be logged in",
+      "ifYouWantToBook": "If you want to book this room, please log in",
       "actions": "Actions"
     },
     "home": {
@@ -32,7 +32,10 @@
       "selectBuildingAndRoom": "Select Building and Room",
       "selectABuilding": "Select a Building",
       "selectARoom": "Select a Room",
-      "selected": "Selected"
+      "selected": "Selected",
+      "visit": "Visit Room",
+      "removePointer": "Remove Pointer",
+      "showPointer": "Show Pointer"
     },
     "account":{
       "selectOptionFromTheSidebar": "Select an option from the sidebar",
@@ -153,7 +156,10 @@
       "selectBuildingAndRoom": "Seleciona Edificio e Sala",
       "selectABuilding": "Seleciona um Edificio",
       "selectARoom": "Seleciona uma Sala",
-      "selected": "Selecionado"
+      "selected": "Selecionado",
+      "visit": "Visitar Sala",
+      "removePointer": "Remover Ponteiro",
+      "showPointer": "Mostrar Ponteiro"
     },
     "account":{
       "selectOptionFromTheSidebar": "Selecione uma opção na barra lateral",

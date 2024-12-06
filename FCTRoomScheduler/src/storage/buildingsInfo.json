@@ -152,7 +152,7 @@
         "floorImage": "building_departamental_floor_1.png",
         "rooms": [
           {
-            "name": "lab 60",
+            "name": "Lab60",
             "size": "60",
             "description": "A general laboratory for various experiments.",
             "photos": [
@@ -182,7 +182,7 @@
             "reservations": []
           },
           {
-            "name": "lab 40",
+            "name": "Lab40",
             "size": "40",
             "description": "A small laboratory for focused experiments.",
             "photos": [
@@ -207,7 +207,7 @@
             "reservations": []
           },
           {
-            "name": "lab 33",
+            "name": "Lab33",
             "size": "33",
             "description": "A chemistry laboratory equipped with specialized tools.",
             "photos": [

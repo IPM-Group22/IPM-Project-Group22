@@ -8,10 +8,10 @@ import 'react-calendar/dist/Calendar.css';
 import FloatingButton from '../sharedComponents/FloatingButton';
 import languageJSON from '../../storage/language.json';
 import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
+import { getUserLanguage, setUserLanguage, isLoggedIn, getUser } from "../../session/session.js";
 // @ts-ignore
 import trash from "../../../media/trash.png";
-
-const language = "en";
+import HelpFooter from "../sharedComponents/helpFooter";
 
 let roomIndex: number = 0;
 
@@ -39,13 +39,22 @@ const responsive = {
 const RoomInfo = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [selectedOption, setSelectedOption] = useState(translations[language].roomInfo.buttonRoomInfo);
+    const [language, setLanguage] = useState(getUserLanguage());
+    const [selectedOption, setSelectedOption] = useState('RoomInfo');
     const { buildingName, roomName } = useParams<{ buildingName: string; roomName: string }>();
     const building = buildingsInfo[buildingName];
     const [roomInfo] = buildingsInfo[buildingName];
     const [isAccountOpen, setIsAccountOpen] = useState(false);
-    const [selectedButton, setSelectedButton] = useState(translations[language].roomInfo.buttonRoomInfo);
+    const [selectedButton, setSelectedButton] = useState('RoomInfo');
     const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
+
+    useEffect(() => {
+        if (!language) {
+            setUserLanguage();
+            setLanguage(getUserLanguage());
+        }
+    }, [language]);
+
 
 
     const findFloorIndex = (buildingName: string, roomName: string): number | null => {
@@ -144,7 +153,7 @@ const RoomInfo = () => {
                 return;
             }
     
-            const reservation = { date: selectedDate, time_start: timeStartInput.value, time_end: timeEndInput.value, user: "user_test" };
+            const reservation = { date: selectedDate, time_start: timeStartInput.value, time_end: timeEndInput.value, user: getUser() };
             const updatedReservations = [...reservations, reservation];
             setReservations(updatedReservations);
             building.floors[currentIndex].rooms[roomIndex].reservations = updatedReservations;
@@ -179,7 +188,7 @@ const RoomInfo = () => {
 
     const renderContent = () => {
         switch (selectedOption) {
-            case translations[language].roomInfo.buttonRoomInfo:
+            case 'RoomInfo':
                 return <div className="rooms-list">
                     {building.floors[currentIndex].rooms.map((room, index) => {
                         if (room.name === roomName) {
@@ -243,7 +252,7 @@ const RoomInfo = () => {
                         return null;
                     })}
                 </div>;
-            case translations[language].roomInfo.buttonReservations:
+            case 'Reservations':
                 return building.floors[currentIndex].rooms.map((room, index) => {
                     if (room.name === roomName) {
                         const reservationsForSelectedDate = reservations.filter(reserve => reserve.date === selectedDate);
@@ -270,11 +279,11 @@ const RoomInfo = () => {
                                                                 <td>{reserve.time_start}</td>
                                                                 <td>{reserve.time_end}</td>
                                                                 <td>
-                                                                    {reserve.user === "user_test" && (
+                                                                    {reserve.user == getUser() ? (
                                                                         <button className='remove-reservation-button' onClick={() => removeReservation(index)}>
                                                                             <img src={trash} alt="Remove" style={{ width: '20px', height: '20px' }} />
                                                                         </button>
-                                                                    )}
+                                                                    ) : (<>-</>)}
                                                                 </td>
                                                             </tr>
                                                         ))}
@@ -285,7 +294,7 @@ const RoomInfo = () => {
                                             <p>{translations[language].roomInfo.noReservations}</p>
                                         )}
                                     </div>
-                                    <div className="details-container book-slot-container">
+                                    { isLoggedIn() ? (<div className="details-container book-slot-container">
                                         <h2>{translations[language].roomInfo.bookYourSlot}</h2>
                                         <div className="book-slot">
                                             <div className="book-slot-row">
@@ -304,7 +313,12 @@ const RoomInfo = () => {
                                                 <button className="book-button" onClick={functionBook}>{translations[language].roomInfo.buttonBook}</button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>) : (
+                                        <div className="details-container book-slot-container">
+                                            <h2>{translations[language].roomInfo.bookYourSlot}</h2>
+                                            <p>{translations[language].roomInfo.ifYouWantToBook}</p>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         );
@@ -316,14 +330,16 @@ const RoomInfo = () => {
         }
     };
 
+    const handleLanguageChange = () => {
+        setUserLanguage();
+        setLanguage(getUserLanguage());
+    };
+
     return (
         <>
         <FloatingButton onClick={() => navigate(-1)} type={"back"} />
         <FloatingButton onClick={toggleAccount} type={"account"} />
-        <FloatingButton onClick={() => {
-        const language = languageJSON.language;
-        languageJSON.language = language === "en" ? "pt" : "en";
-        }} type={"language"} />
+        <FloatingButton onClick={handleLanguageChange} type={"language"} />
         {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
         <div className={"centered-container"}><h1>{translations[language].roomInfo.building} {buildingName.toUpperCase()} {translations[language].roomInfo.room} {roomName}</h1></div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -334,19 +350,19 @@ const RoomInfo = () => {
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                 <button
-                    className={`buttons ${selectedButton === translations[language].roomInfo.buttonRoomInfo ? 'selected' : ''}`}
+                    className={`buttons ${selectedButton === 'RoomInfo' ? 'selected' : ''}`}
                     onClick={() => {
-                        setSelectedOption(translations[language].roomInfo.buttonRoomInfo);
-                        setSelectedButton(translations[language].roomInfo.buttonRoomInfo);
+                        setSelectedOption('RoomInfo');
+                        setSelectedButton('RoomInfo');
                     }}
                 >
                     {translations[language].roomInfo.buttonRoomInfo}
                 </button>
                 <button
-                    className={`buttons ${selectedButton === translations[language].roomInfo.buttonReservations ? 'selected' : ''}`}
+                    className={`buttons ${selectedButton === 'Reservations' ? 'selected' : ''}`}
                     onClick={() => {
-                        setSelectedOption(translations[language].roomInfo.buttonReservations);
-                        setSelectedButton(translations[language].roomInfo.buttonReservations);
+                        setSelectedOption('Reservations');
+                        setSelectedButton('Reservations');
                     }}
                 >
                     {translations[language].roomInfo.buttonReservations}
@@ -355,10 +371,8 @@ const RoomInfo = () => {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {renderContent()}
             </div>
-            <div>
-
-            </div>
         </div>
+        <HelpFooter />
         </>
     );
 };

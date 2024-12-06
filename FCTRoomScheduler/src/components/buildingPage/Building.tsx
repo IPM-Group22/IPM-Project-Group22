@@ -44,7 +44,7 @@ const Building = () => {
             <FloatingButton onClick={toggleAccount} type={"account"} />
             <FloatingButton onClick={handleLanguageChange} type={"language"} />
             {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
-            <h1 className="building-title">{translation?.building}: {buildingName.toUpperCase()}</h1>
+            <div className="building-title"><h1>{translation?.building}: {buildingName.toUpperCase()}</h1></div>
             <img className="building-image" src={building.image} alt={`${translation?.building} ${buildingName} ${translation?.imageNotFound}`} />
             <p className='building-info'>{translation?.numberOfFloors}: {building.numberOfFloors}</p>
 

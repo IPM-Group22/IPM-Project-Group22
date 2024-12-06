@@ -9,9 +9,9 @@ import Filters from '../sharedComponents/Filters';
 import { useNavigate } from 'react-router-dom';
 import FloatingButton from '../sharedComponents/FloatingButton';
 import L from 'leaflet';
-import languageJSON from '../../storage/language.json';
 import { getUserLanguage, setUserLanguage } from '../../session/session';
 import translations from '../../storage/translations.json';
+import HelpFooter from '../sharedComponents/helpFooter';
 
 const center: LatLngTuple = [38.66149464690209, -9.205871106395124];
 
@@ -52,7 +52,7 @@ export default function Home() {
       setLanguage(getUserLanguage());
   };
 
-  let translation = translations[language]?.building;
+  let translation = translations[language]?.home;
 
 
   // Array of building data
@@ -72,9 +72,8 @@ export default function Home() {
         [38.66123638240376, -9.20400828555248],
       ] as LatLngTuple[], // Entrance locations
       rooms: [
-        { name: 'Room 124', location: [38.66138789664035, -9.203338278195364] as LatLngTuple},
-        { name: 'Room 125', location: [38.661056481631626, -9.203265705787098] as LatLngTuple },
-        { name: 'Room 126', location: [38.66104089641529, -9.20366209158845] as LatLngTuple},
+        { name: '127', location: [38.66138789664035, -9.203338278195364] as LatLngTuple},
+        { name: '128', location: [38.661056481631626, -9.203265705787098] as LatLngTuple },
       ],
     },
     {
@@ -93,9 +92,9 @@ export default function Home() {
         [38.66225056228438, -9.208267402653872],
       ] as LatLngTuple[], // Entrance locations
       rooms: [
-        { name: 'Lab 1', location: [38.6626, -9.2075] as LatLngTuple},
-        { name: 'Lab 2', location: [38.6627, -9.2076] as LatLngTuple},
-        { name: 'Conference Room', location: [38.6628, -9.2077] as LatLngTuple},
+        { name: 'Lab60', location: [38.6626, -9.2075] as LatLngTuple},
+        { name: 'Lab40', location: [38.6627, -9.2076] as LatLngTuple},
+        { name: 'Lab33', location: [38.6628, -9.2077] as LatLngTuple},
       ],
     },
     {
@@ -112,9 +111,7 @@ export default function Home() {
     
       ] as LatLngTuple[], // Entrance locations
       rooms: [
-        { name: 'Lab 1', location: [38.6626, -9.2075] as LatLngTuple},
-        { name: 'Lab 2', location: [38.6627, -9.2076] as LatLngTuple},
-        { name: 'Conference Room', location: [38.6628, -9.2077] as LatLngTuple},
+        { name: '1C', location: [38.6626, -9.2075] as LatLngTuple}
       ],
     },
 
@@ -192,6 +189,13 @@ export default function Home() {
     setRoomLocation(room?.location || null);
   };
 
+  const removeSearchIndicator = () => {
+    if (roomLocation != null) {setRoomLocation(null)}
+    else {
+      setRoomLocation(buildings.find((b) => b.id === selectedBuilding).rooms.find((r) => r.name === selectedRoom).location || null);
+    };
+  }
+
   return (
     <div className="map-container">
       <MapContainer
@@ -257,9 +261,10 @@ export default function Home() {
           <h3>{translation.selectBuildingAndRoom}</h3>
 
           {/* Building Dropdown */}
-          <label htmlFor="building-select">{translation.building}:</label>
+          <label className="quickSearchLabel" htmlFor="building-select">{translation.building}:</label>
           <select
             id="building-select"
+            className='quickSearchInput'
             value={selectedBuilding || ''}
             onChange={handleBuildingChange}
           >
@@ -276,9 +281,10 @@ export default function Home() {
           {/* Room Dropdown */}
           {selectedBuilding && (
             <>
-              <label htmlFor="room-select">{translation.room}:</label>
+              <label htmlFor="room-select" className="quickSearchLabel">{translation.room}:</label>
               <select
                 id="room-select"
+                className='quickSearchInput'
                 value={selectedRoom || ''}
                 onChange={handleRoomChange}
               >
@@ -298,9 +304,17 @@ export default function Home() {
 
           {/* Display Selected Room */}
           {selectedRoom && (
-            <p>
+            <div>
+              <p className="quickSearchP">
               {translation.building}: {selectedBuilding} - {selectedRoom}
-            </p>
+              </p>
+              <button className="quickSearchButton" type="button" onClick={() => navigate(`/building/${selectedBuilding}/room/${selectedRoom}`)}>
+                {translation.visit}
+              </button>
+              <button className="quickSearchButton" type="button" onClick={removeSearchIndicator}>
+                {roomLocation != null ? <>{translation.removePointer}</> : <>{translation.showPointer}</>}
+              </button>
+            </div>
           )}
         </div>
       )}
@@ -315,6 +329,8 @@ export default function Home() {
           </div>
         ) : null
       }
+
+      <HelpFooter />
 
       <div className="map-header">
         <h1>NOVA FCT ROOM SCHEDULER</h1>
