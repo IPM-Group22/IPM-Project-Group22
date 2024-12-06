@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import buildingsInfo from '../../storage/buildingsInfo.json';
 import './FilterResults.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import FloatingButton from './FloatingButton';
 import LoginRegisterPopup from './LoginRegisterPopup';
-import languageJSON from '../../storage/language.json';
+import { getUserLanguage, setUserLanguage } from "../../session/session.js";
+import translations from '../../storage/translations.json';
+import HelpFooter from './helpFooter';
 
 interface FilterResultsProps {
     roomCapacity: string;
@@ -19,6 +21,22 @@ const FilterResults: React.FC = () => {
     const filterParams = location.state as FilterResultsProps;
     const { roomCapacity, selectedMaterials, selectedQualities, selectedRoomType } = filterParams;
     const [isAccountOpen, setIsAccountOpen] = useState(false);
+
+    const [language, setLanguage] = useState(getUserLanguage());
+
+    useEffect(() => {
+        if (!language) {
+            setUserLanguage();
+            setLanguage(getUserLanguage());
+        }
+    }, [language]);
+    
+    const handleLanguageChange = () => {
+        setUserLanguage();
+        setLanguage(getUserLanguage());
+    };
+
+    let translation = translations[language]?.filterResults;
 
     const toggleAccount = () => {
         setIsAccountOpen(!isAccountOpen);
@@ -66,27 +84,24 @@ const FilterResults: React.FC = () => {
         <>
             <FloatingButton onClick={() => navigate('/')} type="home" />
             <FloatingButton onClick={toggleAccount} type="account" />
-            <FloatingButton onClick={() => {
-            const language = languageJSON.language;
-            languageJSON.language = language === "en" ? "pt" : "en";
-            }} type={"language"} />
-            {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
+            <FloatingButton onClick={handleLanguageChange} type={"language"} />
+            {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} language={language} /> : <></>}
 
             <div className={"header"}>
-                <h1>Filter Results</h1>
+                <h1>{translation.results}</h1>
             </div>
 
             <div className={"filter-results"}>
                 {filterResults.length > 0 ? (
                     filterResults.map((building, index) => (
                         <div key={index} className="building-result">
-                            <h2 onClick={() => navigate(`/building/${building.buildingName}`)}>Building {building.buildingName.toUpperCase()}</h2>
+                            <h2 onClick={() => navigate(`/building/${building.buildingName}`)}>{translation.building} {building.buildingName.toUpperCase()}</h2>
                             {building.floors.map((floor, floorIndex) => (
                                 <div key={floorIndex} className="floor-result">
-                                    <h3>Floor {floor.floor}</h3>
+                                    <h3>{translation.floor} {floor.floor}</h3>
                                     {floor.rooms.map((room, roomIndex) => (
                                         <div key={roomIndex} className="room-result">
-                                            <p onClick={() => navigate(`/building/${building.buildingName}/room/${room.name}`)}>Room {room.name}</p>
+                                            <p onClick={() => navigate(`/building/${building.buildingName}/room/${room.name}`)}>{translation.room} {room.name}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -94,9 +109,10 @@ const FilterResults: React.FC = () => {
                         </div>
                     ))
                 ) : (
-                    <div className="no-results">No results found</div>
+                    <div className="no-results">{translation.noResults}</div>
                 )}
             </div>
+            <HelpFooter />
         </>
     );
 };

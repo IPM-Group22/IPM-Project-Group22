@@ -320,12 +320,12 @@ export default function Home() {
       )}
 
       <Drawer isOpen={isTabOpen} onClose={toggleTab}>
-        <Filters />
+        <Filters language={language}/>
       </Drawer>
 
       {isAccountOpen ? (
           <div className="login-register-popup">
-            <LoginRegisterPopup onClose={toggleAccount} />
+            <LoginRegisterPopup onClose={toggleAccount} language={language} />
           </div>
         ) : null
       }

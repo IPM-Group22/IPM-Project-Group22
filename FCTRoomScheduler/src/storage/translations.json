@@ -80,7 +80,11 @@
       "usernameTooShort": "Username too short",
       "nameTooShort": "Name too short",
       "invalidEmail": "Invalid email",
-      "weakPassword": "Password must have at least 6 characters and contain at least 1 number and special character"
+      "weakPassword": "Password must have at least 6 characters and contain at least 1 number and special character",
+      "show": "Show",
+      "hide": "Hide",
+      "signup" : "Sign Up",
+      "login": "Log in"
     },
     "floatingButton": {
       "filters": "Filters",
@@ -102,8 +106,10 @@
       "floor": "Floor"
     },
     "floatingButtonAccount": {
-      "welcome": "Welcome",
-      "myAccount": "My Account"
+      "welcome": "Hello",
+      "myAccount": "My Account",
+      "loginOrRegister": "Login or Register",
+      "logout": "Log Out"
     },
     "filters": {
       "filters": "Filters",
@@ -119,6 +125,13 @@
       "search": "Search",
       "reset": "Reset",
       "enterCapacity": "Enter the room capacity"
+    },
+    "filterResults" : {
+      "noResults" : "No results found",
+      "results" : "Filter Results",
+      "building" : "Building",
+      "floor" : "Floor",
+      "room" : "Room"
     }
   },
 
@@ -204,7 +217,11 @@
       "usernameTooShort": "Username demasiado curto",
       "nameTooShort": "Nome demasiado curto",
       "invalidEmail": "Email inválido",
-      "weakPassword": "A Password deve ter pelo menos 6 caracteres e conter pelo menos 1 número e caracter especial"
+      "weakPassword": "A Password deve ter pelo menos 6 caracteres e conter pelo menos 1 número e caracter especial",
+      "show": "Mostrar",
+      "hide": "Esconder",
+      "signup" : "Registar",
+      "login": "Entrar"
     },
     "floatingButton": {
       "filters": "Filtros",
@@ -226,8 +243,10 @@
       "floor": "Piso"
     },
     "floatingButtonAccount": {
-      "welcome": "Bem vindo",
-      "myAccount": "A minha conta"
+      "welcome": "Olá",
+      "myAccount": "A minha conta",
+      "loginOrRegister": "Login ou Registo",
+      "logout": "Sair"
     },
     "filters": {
       "filters": "Filtros",
@@ -243,6 +262,13 @@
       "search": "Pesquisar",
       "reset": "Reiniciar",
       "enterCapacity": "Insira a capacidade da sala"
+    },
+    "filterResults" : {
+      "noResults" : "Sem resultados encontrados",
+      "results" : "Resultado da Pesquisa",
+      "building" : "Edifício",
+      "floor" : "Piso",
+      "room" : "Sala"
     }
   }
 }

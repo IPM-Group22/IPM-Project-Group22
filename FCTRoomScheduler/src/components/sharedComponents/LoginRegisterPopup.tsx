@@ -4,12 +4,12 @@ import "./LoginRegisterPopup.css";
 import { login, setUserSession, clearUserSession, userExists } from "../../session/session.js";
 import AccountPopup from "./AccountPopup";
 import translations from '../../storage/translations.json';
-import languageJson from '../../storage/language.json';
 
-let language = languageJson['language'];
-let translation = translations[language].loginAndRegister;
 
-const LoginRegisterPopup = ({ onClose }) => {
+
+
+
+const LoginRegisterPopup = ({ onClose, language }) => {
     const [isLogin, setIsLogin] = useState(true);
     const [usernameLogin, setUsernameLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState('');
@@ -28,11 +28,13 @@ const LoginRegisterPopup = ({ onClose }) => {
     const [registerPasswordVisible, setRegisterPasswordVisible] = useState(false);
     const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
 
+    let translation = translations[language].loginAndRegister;
+
     const navigate = useNavigate();
 
     const toggleLogin = () => {
         setIsLogin(!isLogin);
-        setMessage(''); // Clear message when toggling between login and register
+        setMessage('');
     };
 
     const handleLogin = (e) => {
@@ -129,7 +131,7 @@ const LoginRegisterPopup = ({ onClose }) => {
     return (
         <>{
             isAccountPopupVisible ? (
-                <AccountPopup onLoginRegister={showLoginPopUp} onLogout={onLogout} onMyAccount={onMyAccount}/>
+                <AccountPopup onLoginRegister={showLoginPopUp} onLogout={onLogout} onMyAccount={onMyAccount} language = {language}/>
             ) :
             (<>{ setShowLogin ? (
                 <div className="popup-overlay">
@@ -154,12 +156,12 @@ const LoginRegisterPopup = ({ onClose }) => {
                                     </svg>
                                 </span>
                                 <button type="button" className="toggle-password" onClick={toggleLoginPasswordVisibility}>
-                                    {loginPasswordVisible ? "Hide" : "Show"}
+                                    {loginPasswordVisible ? translation.hide : translation.show }
                                 </button>
                                 <label className="label">Password</label>
                             </div>
                             {message && <div className="message">{message}</div>}
-                            <button className="button">Log in</button>
+                            <button className="button">{translation.login}</button>
                             <div className="sign-up">
                                 {translation.notAMember} 
                                 <a onClick={toggleLogin}> {translation.signupNow}</a>
@@ -204,7 +206,7 @@ const LoginRegisterPopup = ({ onClose }) => {
                             </span>
                             <label className="label">Password</label>
                             <button type="button" className="toggle-password" onClick={toggleRegisterPasswordVisibility}>
-                                {registerPasswordVisible ? "Hide" : "Show"}
+                                {registerPasswordVisible ? translation.hide : translation.show }
                             </button>
                         </div>
                         <div className="field">
@@ -216,11 +218,11 @@ const LoginRegisterPopup = ({ onClose }) => {
                             </span>
                             <label className="label">{translation.repeatPassword}</label>
                             <button type="button" className="toggle-password" onClick={toggleRepeatPasswordVisibility}>
-                                {repeatPasswordVisible ? "Hide" : "Show"}
+                                {repeatPasswordVisible ? translation.hide : translation.show}
                             </button>
                         </div>
                         {message && <div className="message">{message}</div>}
-                        <button className="button">Sign up</button>
+                        <button className="button">{translation.signup}</button>
                         <div className="sign-up">
                             {translation.alreadyAMember} 
                             <a onClick={toggleLogin}> {translation.loginNow} </a>

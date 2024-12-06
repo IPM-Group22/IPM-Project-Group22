@@ -1,8 +1,10 @@
 import React from 'react';
+import './FloatingButton.css';
 import './LeftSideFloatingButton.css';
 import './RightSideFloatingButton.css';
 import './LeftSideSearchButton.css';
 import './RighSideLanguageButton.css';
+import { isLoggedIn, getUser } from "../../session/session.js";
 // @ts-ignore
 import searchIcon from "../../../media/searchIcon.png";
 // @ts-ignore
@@ -69,7 +71,15 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({ onClick, type }) => {
 
     return (
         <button className={className} onClick={onClick}>
-            <img src={icon} alt={`${type} icon`} className="floating-button-icon" />
+            { type !== 'account' ?
+                (<img src={icon} alt={`${type} icon`} className="floating-button-icon" />)
+            :
+                ( isLoggedIn() ? 
+                    <h1 className="text">{getUser().username.charAt(0).toUpperCase()}</h1>
+                :
+                    (<img src={icon} alt={`${type} icon`} className="floating-button-icon" />) 
+                )
+            }
         </button>
     );
 };

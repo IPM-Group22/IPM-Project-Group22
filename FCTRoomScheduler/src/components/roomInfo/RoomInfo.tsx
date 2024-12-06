@@ -340,7 +340,7 @@ const RoomInfo = () => {
         <FloatingButton onClick={() => navigate(-1)} type={"back"} />
         <FloatingButton onClick={toggleAccount} type={"account"} />
         <FloatingButton onClick={handleLanguageChange} type={"language"} />
-        {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} /> : <></>}
+        {isAccountOpen ? <LoginRegisterPopup onClose={toggleAccount} language={language} /> : <></>}
         <div className={"centered-container"}><h1>{translations[language].roomInfo.building} {buildingName.toUpperCase()} {translations[language].roomInfo.room} {roomName}</h1></div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
