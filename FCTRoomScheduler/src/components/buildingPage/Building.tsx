@@ -7,6 +7,9 @@ import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
 import { getUserLanguage, setUserLanguage } from "../../session/session.js";
 import translations from '../../storage/translations.json';
 import HelpFooter from '../sharedComponents/helpFooter';
+import LanguageVerification from '../sharedComponents/LanguageVerification';
+
+LanguageVerification();
 
 const Building = () => {
     const { buildingName } = useParams<{ buildingName: string }>();

@@ -7,6 +7,9 @@ import LoginRegisterPopup from './LoginRegisterPopup';
 import { getUserLanguage, setUserLanguage } from "../../session/session.js";
 import translations from '../../storage/translations.json';
 import HelpFooter from './helpFooter';
+import LanguageVerification from '../sharedComponents/LanguageVerification';
+
+LanguageVerification();
 
 interface FilterResultsProps {
     roomCapacity: string;

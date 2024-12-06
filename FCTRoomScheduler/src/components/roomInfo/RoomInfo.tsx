@@ -12,6 +12,9 @@ import { getUserLanguage, setUserLanguage, isLoggedIn, getUser } from "../../ses
 // @ts-ignore
 import trash from "../../../media/trash.png";
 import HelpFooter from "../sharedComponents/helpFooter";
+import LanguageVerification from '../sharedComponents/LanguageVerification';
+
+LanguageVerification();
 
 let roomIndex: number = 0;
 

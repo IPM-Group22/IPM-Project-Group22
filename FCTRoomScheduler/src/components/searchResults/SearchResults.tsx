@@ -5,7 +5,9 @@ import './SearchResults.css';
 import FloatingButton from '../sharedComponents/FloatingButton';
 import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
 import { getUserLanguage, setUserLanguage } from "../../session/session.js";
+import LanguageVerification from '../sharedComponents/LanguageVerification';
 
+LanguageVerification();
 
 const typeOptions = [
     "building",

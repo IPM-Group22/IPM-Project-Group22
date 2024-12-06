@@ -7,7 +7,9 @@ import HelpFooter from '../sharedComponents/helpFooter';
 import { getUserLanguage, setUserLanguage } from "../../session/session.js";
 import translations from '../../storage/translations.json';
 import FloatingButton from "../sharedComponents/FloatingButton";
+import LanguageVerification from '../sharedComponents/LanguageVerification';
 
+LanguageVerification()
 
 const Account = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);

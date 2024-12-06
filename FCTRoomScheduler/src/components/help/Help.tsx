@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { getUserLanguage, setUserLanguage } from "../../session/session.js";
 import translations from '../../storage/translations.json';
 import LoginRegisterPopup from '../sharedComponents/LoginRegisterPopup';
+import LanguageVerification from '../sharedComponents/LanguageVerification';
+
+LanguageVerification();
 
 const Help: React.FC = () => {
     const navigate = useNavigate();

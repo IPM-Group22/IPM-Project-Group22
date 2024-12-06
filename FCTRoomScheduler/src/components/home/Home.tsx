@@ -12,6 +12,7 @@ import L from 'leaflet';
 import { getUserLanguage, setUserLanguage } from '../../session/session';
 import translations from '../../storage/translations.json';
 import HelpFooter from '../sharedComponents/helpFooter';
+import LanguageVerification from '../sharedComponents/LanguageVerification';
 
 const center: LatLngTuple = [38.66149464690209, -9.205871106395124];
 
@@ -27,6 +28,7 @@ const entranceIcon = L.icon({
   iconAnchor: [10, 10], // Center the icon
 });
 
+LanguageVerification()
 
 export default function Home() {
   const [isTabOpen, setIsTabOpen] = useState(false);
