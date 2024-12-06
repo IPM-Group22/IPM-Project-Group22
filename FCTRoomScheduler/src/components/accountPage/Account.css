@@ -1,0 +1,166 @@
+/* Account.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.account-container {
+  display: flex;
+  height: 100vh;
+  align-content: center;
+}
+
+.account-sidebar {
+  width: 30%;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.account-sidebar h1 {
+  font-size: 45px;
+  text-align: center;
+  margin-top: 9px;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.account-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-sidebar li {
+  margin-bottom: 10px;
+  width: 65%;
+}
+
+.account-sidebar button {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 19px;
+  text-align: center;
+}
+
+.account-sidebar button:hover {
+  background-color: #0056b3;
+}
+
+.account-sidebar .logout-button {
+background-color: red;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.account-sidebar .logout-button:hover {
+background-color: darkred;
+}
+
+.account-content {
+  flex: 1;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.user-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.user-details-card {
+background-color: white;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+padding: 30px;
+width: 100%;
+max-width: 500px;
+transition: transform 0.3s ease;
+}
+
+.user-details-card:hover {
+transform: scale(1.02);
+}
+
+.user-details-title {
+text-align: center;
+color: #333;
+margin-bottom: 20px;
+margin-top: 0px;
+font-size: 32px;
+}
+
+.user-details-grid {
+display: grid;
+gap: 15px;
+}
+
+.user-detail-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px;
+background-color: #f0f0f0;
+border-radius: 8px;
+}
+
+.detail-label {
+font-weight: 600;
+color: #555;
+}
+
+.detail-value {
+color: #333;
+font-weight: 400;
+}
+
+
+.selectOption {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px;
+border-radius: 8px;
+color: white;
+font-size: 20px;
+}
+
+.notLogged {
+align-items: center;
+height: 100vh;
+color: white;
+font-size: 70px;
+text-align: center;
+}
+
+.reservationsContent {
+display: flex;
+flex-direction: column;
+align-items: center;
+color: white;
+}
+
+.reservationsContent h2 {
+font-size: 40px;
+margin-bottom: 20px;
+}
+
+.reservationsContent p {
+font-size: 20px;
+}
