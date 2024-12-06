@@ -1,24 +1,27 @@
-import React from 'react'
-import languageJson from '../../storage/language.json';
-import translations from '../../storage/translations.json';
+import React from 'react';
 import { useNavigate } from "react-router-dom";
+import translations from '../../storage/translations.json';
+import './HelpFooter.css';
 
-let language = languageJson['language'];
-let translationHelp = translations[language].needHelp;
+interface HelpFooterProps {
+    language: string; // Optional prop
+    needBackground?: boolean; // Optional prop
+}
 
-const HelpFooter = () => {
+const HelpFooter: React.FC<HelpFooterProps> = ({ language, needBackground }) => {
     const navigate = useNavigate();
 
+    // Provide a default value if language is not provided
+    const translationHelp = translations[language].needHelp;
+
     return (
-        <div className="help-link" 
-            style={
-                {position: 'absolute',bottom: '25px',right: '10px',cursor: 'pointer',color: 'white',textDecoration: 'underline',zIndex: 1000,}
-            } 
+        <div 
+            className={`help-link ${needBackground ? 'background' : ''}`} 
             onClick={() => navigate('/help')}
         >
             {translationHelp.needHelp}
-          </div>
-    )
+        </div>
+    );
 }
 
-export default HelpFooter
+export default HelpFooter;

@@ -75,7 +75,7 @@ const Building = () => {
                 ))}
             </div>
 
-            <HelpFooter />
+            <HelpFooter language = {language}/>
         </div>
     );
 }

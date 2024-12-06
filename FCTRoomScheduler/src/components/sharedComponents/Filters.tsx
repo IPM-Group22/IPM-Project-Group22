@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import CustomDropdown from './CustomDropdown';
 import filters from '../../storage/filtersInfo.json';
 import './Filters.css';
-import { getUserLanguage } from "../../session/session.js";
 import translations from '../../storage/translations.json';
 
 interface FilterParams {

@@ -112,7 +112,7 @@ const FilterResults: React.FC = () => {
                     <div className="no-results">{translation.noResults}</div>
                 )}
             </div>
-            <HelpFooter />
+            <HelpFooter language = {language}/>
         </>
     );
 };

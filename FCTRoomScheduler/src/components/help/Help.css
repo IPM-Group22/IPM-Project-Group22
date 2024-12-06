@@ -1,0 +1,127 @@
+/* Ensure the body and html take full height */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Help container */
+.help-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+/* Title container */
+.titleContainer {
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: white;
+}
+
+/* Title */
+.title {
+    font-size: 2.5rem;
+    color: white; /* Set title color to white */
+    margin: 0;
+}
+
+/* Content box with background */
+.help-content {
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 15px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+}
+
+/* Adding a decorative background behind the text */
+.help-content::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(135deg, #1e3455, #2a4a7a);
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* Help title */
+.help-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #f0f8ff;
+}
+
+/* FAQ Section */
+.faq-section {
+    margin-bottom: 20px;
+}
+
+/* FAQ item */
+.faq-item {
+    margin-bottom: 20px;
+}
+
+/* Question styling */
+.faq-question {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    background: #2a4a7a;
+    color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Answer styling */
+.faq-answer {
+    font-size: 1rem;
+    background: #1e3455;
+    padding: 15px;
+    border-radius: 8px;
+    color: #ffffff;
+    min-height: 80px; /* Optional: Set minimum height for uniformity */
+}
+
+/* Additional info */
+.additional-info {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #dcdcdc;
+}
+
+.additional-info a {
+    color: #79a9ff;
+    text-decoration: none;
+}
+
+.additional-info a:hover {
+    text-decoration: underline;
+}
+
+/* Floating buttons container */
+.floating-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 3; /* Ensure the buttons are above other elements */
+}

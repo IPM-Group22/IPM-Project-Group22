@@ -330,7 +330,7 @@ export default function Home() {
         ) : null
       }
 
-      <HelpFooter />
+      <HelpFooter language = {language} needBackground= {true}/>
 
       <div className="map-header">
         <h1>NOVA FCT ROOM SCHEDULER</h1>

@@ -372,7 +372,7 @@ const RoomInfo = () => {
                 {renderContent()}
             </div>
         </div>
-        <HelpFooter />
+        <HelpFooter language = {language}/>
         </>
     );
 };

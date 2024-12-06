@@ -9,6 +9,7 @@ import Error from "./components/error/Error";
 import SearchResults from "./components/searchResults/SearchResults";
 import Account from "./components/accountPage/Account";
 import FilterResults from "./components/sharedComponents/FilterResults";
+import Help from './components/help/Help'; 
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
             {
                 "path": "/building/:buildingName",
                 "element": <Building />,
+            },
+            {
+                "path": "/help",  
+                "element": <Help />, 
             },
             {
                 "path": "/building/:buildingName/room/:roomName",

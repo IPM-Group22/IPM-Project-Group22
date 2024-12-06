@@ -132,6 +132,26 @@
       "building" : "Building",
       "floor" : "Floor",
       "room" : "Room"
+    },
+    "help": {
+      "pageTitle": "Help",
+      "title": "Frequently Asked Questions",
+      "faq": [
+        {
+          "question": "What is this application for?",
+          "answer": "This application helps you schedule rooms efficiently and manage bookings seamlessly, as well as it helps users find rooms in case they don't know where they are located."
+        },
+        {
+          "question": "How do I create a new booking?",
+          "answer": "To create a new booking, navigate to the desired room's page, select the option 'Reservations' and the desired times of beginning and ending, then click 'Book' and it's done."
+        },
+        {
+          "question": "Can I share a room booking with others?",
+          "answer": "Yes, you can share booking details with others via email or direct link from the dashboard."
+        }
+      ],
+      "additionalInfo": "Need more help? Contact us at",
+      "contactEmail": "nfrs@email.com"
     }
   },
 
@@ -269,6 +289,26 @@
       "building" : "Edifício",
       "floor" : "Piso",
       "room" : "Sala"
+    },
+    "help": {
+      "pageTitle": "Ajuda",
+      "title": "Perguntas Frequentes",
+      "faq": [
+        {
+          "question": "Para que serve esta aplicação?",
+          "answer": "Esta aplicação ajuda a agendar salas de forma eficiente e a gerir reservas sem problemas, assim como também ajuda a poder encontrar salas caso ainda não saiba onde se localizam."
+        },
+        {
+          "question": "Como faço para criar uma nova reserva?",
+          "answer": "Para criar uma nova reserva, navegue até à página da sala que deseja reservar, selecione a opção 'Reservas' e em seguida os horários de começo e fim desejados e clique em 'Reservar'."
+        },
+        {
+          "question": "Posso compartilhar uma reserva de sala com outras pessoas?",
+          "answer": "Sim, podes compartilhar os detalhes da reserva com outras pessoas por e-mail ou link direto do painel."
+        }
+      ],
+      "additionalInfo": "Precisa de mais ajuda? Contacta-nos através do email",
+      "contactEmail": "nfrs@email.com"
     }
   }
 }

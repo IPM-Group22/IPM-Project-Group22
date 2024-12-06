@@ -209,7 +209,7 @@ const Account = () => {
         <div className="account-content">
           {!showLogoutConfirm && renderContent()}
         </div>
-        <HelpFooter />
+        <HelpFooter language = {language}/>
       </div>
       : 
       <div>

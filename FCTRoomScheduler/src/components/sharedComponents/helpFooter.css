@@ -1,0 +1,15 @@
+.help-link {
+    position: absolute;
+    bottom: 25px;
+    right: 10px;
+    cursor: pointer;
+    color: white;
+    text-decoration: underline;
+    z-index: 1000;
+}
+
+.help-link.background {
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
